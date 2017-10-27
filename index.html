@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="zh-TW" prefix="og:http://ogp.me/ns#">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Literary Dessert</title>
+	<link rel="Shortcut Icon" type="image/x-icon" href="pic/Literary%20Dessert%20Icon_Sky_dot2.png" />
+
+	<meta property="og:title" content="Literary Dessert 點心故事"/>
+	<meta property="og:description" content="每個故事，都是一口不同味道的點心，每一口，都是不一樣的滋味"/>
+	<meta property="og:site_name" content="Literary Dessert 點心故事"/>
+	<meta property="og:type" content="story"/>
+	<meta property="og:image" content="http://i.imgur.com/W7WNLxx.jpg"/>
+
+	<!-- theme color -->
+	<meta name="theme-color" content="#4C9ED9"/>
+	<meta name="msapplication-navbutton-color" content="#4C9ED9"/>  
+
+   
+    <link href="css/main.css" rel="stylesheet" type="text/css">
+    <script src="js/vue.min.js"></script>
+    <script src="js/jquery-3.0.0.min.js"></script>
+	
+</head>
+
+
+<body>
+	
+	<div id="app" style="display:none">
+		
+		<!--導航欄-->
+		<div class="nav">
+			<div class="logo">
+				<img src="pic/Icon_White.svg" v-on:click="Topit()" class="nav-left"/>
+				<p class="nav-left" v-on:click="Topit()">Literary Dessert</p>
+			</div>
+			<img src="pic/Menu.svg" class="nav-right sideBtn" v-on:click="SideToggle()"/>
+		</div>
+		
+		<div class="container">
+			
+			<!--閱讀區-->
+			<div class="read" v-if="NowDiv == 0">
+				<div class="title">
+					<h1 v-if="AllStory[StoryInx]">{{AllStory[StoryInx].title}}</h1>
+				</div>
+				<p v-for="StoryLine in GetThisStory" class="word">{{StoryLine}}</p>
+				
+				<p class="littleP" v-if="AllStory[StoryInx]">Type_{{AllStory[StoryInx].type}}</p>
+				
+				<div class="text-right inline">
+					<div title="收藏" v-on:click="ToggleBookMark()" class="bookmarkBtn circle">
+						<span v-if="BookMark.Has(StoryInx)">
+							<img src="pic/Star.svg"/>
+						</span>
+						<span v-else>
+							<img src="pic/Star_Empty.svg"/>
+						</span>
+					</div>
+				</div>
+			</div>
+			
+			<!--歡迎-->
+			<div class="welcome" v-if="NowDiv == 1">
+				<div class="circle HeadO hide">
+					<p>Hello</p>
+				</div>
+				<p>每個故事，都是不同口味的點心</p>
+				<h1>按下抽一個故事</h1>
+			</div>
+			
+			<!--抽故事-->
+			<div v-on:click="GetRandomStory()" class="circle GetRandom" title="抽一個故事">
+				<img src="pic/Icon_White.svg"/>			
+			</div>
+			
+			<!--底部欄-->
+			<div class="bottomDiv">
+				<p class="halfOpacity">作者：孫宇</p>
+				
+				<a href="https://www.facebook.com/LiteraryDessert/" title="Facebook" target="_blank">
+					<img src="pic/icon_fb.png"/>
+				</a>
+				
+				<a href="https://pastewall.com/6028/wall/2" title="Paste Wall" target="_blank">
+					<img src="pic/icon_pw.png"/>
+				</a>
+				<a href="https://www.facebook.com/122589321556716/" title="DROOM" target="_blank">
+					<img src="pic/DROOM.svg"/>
+				</a>				
+			</div>
+			
+		</div>
+		
+		<!-- 側邊攔 -->
+		<div class="sideBox">
+		
+			<!--功能切換-->
+			<div class="sideBoxSelect">
+			
+				<div title="尋找" class="sideBoxSelectItem" v-on:click="NowSide=0" v-bind:class="{'sideBoxSelectItem-on':NowSide==0}">
+					<img src="pic/Find.svg" class="sideBoxSelectItem-Img"/>
+				</div>
+				
+				<div title="收藏" class="sideBoxSelectItem" v-on:click="NowSide=1" v-bind:class="{'sideBoxSelectItem-on':NowSide==1}">
+					<img src="pic/Star.svg" class="sideBoxSelectItem-Img"/>
+				</div>
+				
+			</div>
+			
+			<!--搜尋-->
+			<div class="searchBar" v-if="NowSide==0">
+				<input v-model="SearchString" placeholder="你想找什麼...？" class="searchTxt">
+				
+				<div class="searchListDiv">
+
+					<div v-for="item in SearchList" class="searchItem" v-on:click="SearchItemClick">
+						<a v-bind:href="GetHash(item)">
+							<p>{{AllStory[item].title}}</p>
+						</a>
+					</div>
+
+					<div class="searchNone"  v-if="SearchList.length>0">
+						<p class="halfOpacity">
+							<span>{{SearchList.length}} 個符合</span>
+						</p>
+					</div>	
+
+				</div>
+				
+				
+			</div>
+			
+			<!--收藏-->
+			<div class="bookmark"  v-if="NowSide==1">
+				<div v-for="item in BookMark.List" class="bookmarkItem">
+					<a v-bind:href="GetHash(item)" v-on:click="Black(false);SideBox(false);">
+						<p>{{AllStory[item].title}}</p>
+					</a>
+				</div>
+			</div>
+		</div>
+		
+		<!--黑幕-->
+		<div class="bigBLACK" v-on:click="Black(false);SideBox(false);"></div>
+		
+	</div>
+	
+	
+	
+	
+	
+	<script src="js/main.js"></script>
+	
+</body>
+
+
+
+</html>

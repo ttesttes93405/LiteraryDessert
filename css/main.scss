@@ -1,0 +1,495 @@
+@import "reset";
+
+$MainColor: #4c9ed9;
+
+$MixValue:0.2;
+$DeepFontColor:#52606a ;//(#4c9ed9*$MixValue + #414141*(1 - $MixValue)); //#414141;
+
+$LightLineColor:  rgba($DeepFontColor, 0.12); //#e5e5e5;
+
+
+body {
+	-moz-user-select : none;
+	-webkit-user-select: none;
+	user-select: none;
+}
+#app{
+	text-align: center;
+	outline:none;
+}
+
+.nav{
+	text-align: left;
+	position: fixed;
+	left: 0;
+	top: 0;
+	display: inline-block;
+	width: 100%;
+	height: 50px;
+	background-color: $MainColor;
+	box-sizing: border-box;
+	padding:0 0px;
+	z-index: 50;
+	box-shadow:  0 0 10px rgba(black,0.3);
+	
+	img{
+		width: 30px;
+		height: auto;
+		padding:10px;
+		cursor: pointer;
+	}
+	p{
+		color: white;
+		display: inline-block;
+		line-height: 50px;
+		cursor: pointer;
+	}
+	
+}
+.container{
+	display: inline-block;
+	width: 900px;
+	padding: 100px 0;
+}
+
+$SideWidth:350px;
+.sideBox{
+	position:fixed;
+	width: $SideWidth;
+	height:100vh;
+	display: inline-block;
+	top:0;
+	right:-$SideWidth;
+	padding-top: 80px;
+	border-left: 1px solid $LightLineColor;
+	background-color: white;
+	box-sizing: border-box;
+	z-index: 40;
+}
+
+.bigBLACK{
+	position: fixed;
+	left:-50%;
+	top:-50%;
+	width:200%;
+	height: 200%;
+	cursor: pointer;
+	
+	background-color: black;
+	opacity:0;
+	
+}
+
+
+//---------------------------------------
+
+.read{
+	padding:0 50px;
+	box-sizing: border-box;
+	text-align: left;
+	.title{
+		text-align: center;
+	}
+	h1{
+		color: $DeepFontColor;
+		font-size: 40px;
+		margin:50px 0;
+		line-height: 60px;
+	}
+	.word{
+		display: inline-block;
+		width:100%;
+		min-height: 45px;
+		line-height: 45px;
+		color: $DeepFontColor;
+		font-size: 15px;
+		border-bottom:1px solid $LightLineColor;
+	}
+}
+
+.welcome{
+	p{
+		margin:20px 0;
+		color: $DeepFontColor;
+		opacity:0.8;
+	}
+	h1{
+		font-size: 32px;
+		font-weight: 900;
+		color: $DeepFontColor;
+		opacity:0.8;
+	}
+}
+
+
+.searchBar{
+	display: inline-block;
+
+	img{
+		width: 40px;
+		height: 40px;
+		padding:10px;
+	}
+	
+	.searchTxt{
+		display:inline-block;
+		
+		margin:20px 0;
+		font-size: 16px;
+		width:300px;
+		height:40px;
+		
+		box-sizing: border-box;
+		
+		color:$MainColor;
+		background-color: inherit;
+		border-style:none;
+		border: 1px solid rgba($MainColor,0.5);
+		padding:5px 10px;
+		margin:10px 20px;
+		text-align: center;
+		font-weight: 800;
+		
+		transition-duration: 0.4s;
+		transition-property: box-shadow;
+		
+		&:focus{
+			box-shadow: 0 0 5px rgba($MainColor,0.8);
+		}
+	}
+	.searchBtn{
+		display: inline-block;
+		width:60px;
+		height:60px;
+		background-color:$LightLineColor;			
+		border-style: none;						
+		cursor: pointer;
+		
+		img{
+			width: 40px;
+			height: 40px;
+			padding:10px;
+		}
+	}
+}
+.searchListDiv{
+	
+	height:50vh;
+	margin-top: 30px;
+	overflow-y: auto;
+	
+	color:$DeepFontColor;
+	text-align: center;
+	
+	border: 1px solid $LightLineColor;	
+	border-left-style: none;
+	border-right-style: none;
+	
+	.searchItem{
+		display:inline-block;
+		border-bottom: 1px dashed $LightLineColor;
+		height: 50px;
+		width:80%;
+		font-size: 14px;
+		text-align: left;
+		a{
+			text-decoration-line: none;
+			color: $DeepFontColor;
+			p{
+				width:100%;
+				height:100%;
+				line-height: 60px;
+
+				transition-duration: 0.4s;
+				transition-property: color,margin;
+
+				&:hover{
+					color: $MainColor;
+					margin-left:-5px;
+				}
+			}
+		}
+	}
+	.searchNone{
+		margin:20px 0;
+		text-align: center;
+	}
+}
+
+.bookmark{
+	text-align: center;
+	padding: 20px 40px;
+	margin: 20px 0;
+	overflow-y: auto;	
+	
+	border: 1px solid $LightLineColor;	
+	border-left-style: none;
+	border-right-style: none;
+	img{
+		width:40px;
+		height:40px;
+	}
+	
+	.bookmarkItem{
+		display:inline-block;
+		border-bottom: 1px dashed $LightLineColor;
+		min-height: 50px;
+		width:100%;
+		font-size: 14px;
+		text-align: left;
+		
+		a{
+			text-decoration-line: none;
+			color: $DeepFontColor;
+		
+			
+			p{
+				width:100%;
+				height:100%;
+				line-height: 50px;
+
+				transition-duration: 0.4s;
+				transition-property: color, margin;
+				
+			
+				&:hover{
+					margin-left:-5px;
+					color: $MainColor;
+				}
+			}
+		}
+	}
+}
+.bookmarkBtn{
+	
+	display: inline-block;
+	width:50px;
+	height:50px;
+	cursor: pointer;
+	
+
+	transition-duration: 0.4s;
+	transition-property: transform;
+	
+	&:hover{
+		transform: scale(1.1);
+	}
+	
+	img{
+		padding:5px;
+		height:40px;
+		width:40px;		
+	}
+	p{
+		display: inline-block;
+		height:40px;
+		line-height:40px;
+		color: $DeepFontColor;
+		padding: 0 10px;
+	}
+}
+
+
+.sideBoxSelect{	
+	.sideBoxSelectItem{
+		cursor: pointer;
+		display: inline-block;
+		width:40px;
+		height:40px;
+		margin:10px;
+		border-radius: 10000px;
+		opacity:0.3;
+		
+		transition-duration: 0.4s;
+		transition-property: opacity, transform;
+		
+		
+		.sideBoxSelectItem-Img{
+			width:100%;
+			height:100%;
+		}
+	}
+	
+	.sideBoxSelectItem-on{
+		opacity:1;
+		transform: scale(1.1);
+	}
+}
+
+.GetRandom{
+	
+	background-color: $MainColor;	
+	display: inline-block;
+	width: 60px;
+	height:60px;
+	margin: 80px 0;
+	cursor: pointer;
+	
+	box-shadow: 0 0 10px rgba(black,0.2);
+	
+	img{
+		width: 30px;
+		height: 30px;
+		padding:15px;
+	}
+	
+	transition-property: transform;
+	transition-duration: 0.4s;
+	&:hover{
+		transform: scale(1.1);
+	}
+}
+
+
+.bottomDiv{
+	border-top: 1px solid $LightLineColor;
+	img{
+		width:40px;
+		height:40px;
+		padding:10px;
+		border-radius: 10000px;
+		opacity:0.2;
+		
+		transition-property: opacity, transform;
+		transition-duration: 0.4s;
+		
+		&:hover{
+			transform: scale(1.1);
+			opacity:1;
+		}
+		
+	}
+	p{
+		font-size: 13px;
+		margin:50px 0;
+	}
+}
+
+.halfOpacity{
+	opacity: 0.3;
+}
+
+//---------------------------------------
+.logo{
+	display: inline-block;
+}
+
+.HeadO{	
+	
+	$HeadSize:80px;
+	
+	display: inline-block;
+	height:$HeadSize;
+	width:$HeadSize;
+	text-align: center;
+	background-color: $MainColor;
+	margin: 30px;
+	
+	p{
+		margin:0 !important;
+		line-height: $HeadSize;
+		color: white !important;
+		font-size: $HeadSize / 3.5;
+	}
+	img{
+		$Side:15px;
+		width:$HeadSize - $Side*2;
+		padding:$Side;
+	}
+	
+	&-s{
+		$HeadSize-s:40px;
+		width:$HeadSize-s;
+		height:$HeadSize-s;
+		margin:10px;
+		
+		img{
+			$Side:5px;
+			width:$HeadSize-s - $Side*2;
+			height:$HeadSize-s - $Side*2;
+			padding:$Side;
+		}
+	}
+}
+
+.circle{
+	border-radius: 10000px;
+}
+.littleP{
+	font-size: 13px;
+	opacity: 0.3;
+	padding:30px 0;
+}
+.nav-right{
+	float:right;
+}
+.nav-left{
+	float:left;
+}
+.text{
+	&-right{ text-align: right;		}
+	&-center{ text-align: center;	}
+	&-left{ text-align: left;		}
+}
+.inline{
+	display: inline-block;
+	width:100%;
+}
+.pointer{
+	cursor: pointer;
+}
+
+hide, .hide{
+	display:none;
+}
+
+
+//縮去兩邊
+@media screen and (max-width:768px ) {
+	
+	.nav{
+		text-align: center;
+		
+		.logo{
+			margin-left:25px;
+		}
+		
+		/*
+		.sideBtn{
+			position: fixed;
+			right:0;
+			top:0;
+			float:none;
+		}
+		*/
+	}
+	
+	.container{
+		width:100%;
+		.read{
+			padding:0 30px;
+			
+			.word{
+				min-height: 35px;
+				line-height: 35px;
+				border-style: none;
+			}
+		}
+	}
+	
+	.GetRandom{
+		width:80px;
+		height:80px;
+		
+		img{
+			width:100%;
+			height:100%;
+			box-sizing: border-box;
+		}
+	}
+}
+	
+
+
+
+
