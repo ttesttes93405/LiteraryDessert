@@ -98,6 +98,10 @@ $(function(){
 	$(".searchTxt").bind("change",function(){
 		vm.SearchFilter();
 		$(".searchTxt").blur();
+	});	
+	$(".searchBtn").bind("click",function(){
+		vm.SearchFilter();
+		$(".searchTxt").blur();
 	});
 
 	var Inx = ParseUrl();
