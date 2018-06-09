@@ -33,11 +33,14 @@
 		
 		<!--導航欄-->
 		<div class="nav">
-			<div class="logo">
-				<img src="pic/Icon_White.svg" v-on:click="Topit()" class="nav-left"/>
-				<p class="nav-left" v-on:click="Topit()">Literary Dessert</p>
-			</div>
-			<img src="pic/Menu.svg" class="nav-right sideBtn" v-on:click="SideToggle()"/>
+            
+            <div class="nav-left" v-on:click="Topit()">
+                <img src="pic/Icon_Blue.svg"/>
+                <p class="">Literary Dessert</p>
+            </div>
+            <div class="nav-right">
+                <img src="pic/Menu.svg" v-on:click="SideToggle()"/>
+            </div>
 		</div>
 		
 		<div class="container">
@@ -49,18 +52,17 @@
 				</div>
 				<p v-for="StoryLine in GetThisStory" class="word">{{StoryLine}}</p>
 				
-				<p class="littleP" v-if="AllStory[StoryInx]">Type_{{AllStory[StoryInx].type}}</p>
+                <div class="read-bottom">
+                    <div class="read-bottom-left">
+                        <p class="tag" v-if="AllStory[StoryInx]">Type_{{AllStory[StoryInx].type}}</p>
+                    </div>
+                    <div class="read-bottom-right">
+                        <div title="收藏" v-on:click="ToggleBookMark()" class="bookmarkBtn circle">
+                            <img v-bind:src="BookMark.Has(StoryInx)?'pic/Star.svg':'pic/Star_Empty.svg'"/>
+                        </div>
+                    </div>
+                </div>
 				
-				<div class="text-right inline">
-					<div title="收藏" v-on:click="ToggleBookMark()" class="bookmarkBtn circle">
-						<span v-if="BookMark.Has(StoryInx)">
-							<img src="pic/Star.svg"/>
-						</span>
-						<span v-else>
-							<img src="pic/Star_Empty.svg"/>
-						</span>
-					</div>
-				</div>
 			</div>
 			
 			<!--歡迎-->
@@ -100,51 +102,53 @@
 		
 			<!--功能切換-->
 			<div class="sideBoxSelect">
-			
-				<div title="尋找" class="sideBoxSelectItem" v-on:click="NowSide=0" v-bind:class="{'sideBoxSelectItem-on':NowSide==0}">
+                <!--
+                <div title="關閉"  v-on:click="Black(false);SideBox(false);" class="sideBoxSelectItem sideBoxSelectItem-off">
+				</div>
+                -->
+				
+				<div title="尋找" v-on:click="NowSide=0" class="sideBoxSelectItem" v-bind:class="{'sideBoxSelectItem-on':NowSide==0,'sideBoxSelectItem-off':NowSide!=0}">
 					<img src="pic/Find.svg" class="sideBoxSelectItem-Img"/>
 				</div>
-				
-				<div title="收藏" class="sideBoxSelectItem" v-on:click="NowSide=1" v-bind:class="{'sideBoxSelectItem-on':NowSide==1}">
+                
+				<div title="收藏"  v-on:click="NowSide=1" class="sideBoxSelectItem" v-bind:class="{'sideBoxSelectItem-on':NowSide==1,'sideBoxSelectItem-off':NowSide!=1}">
 					<img src="pic/Star.svg" class="sideBoxSelectItem-Img"/>
 				</div>
-				
+                
 			</div>
-			
-			<!--搜尋-->
-			<div class="searchBar" v-if="NowSide==0">
-				<input v-model="SearchString" placeholder="你想找什麼...？" class="searchTxt">
-				<div class="searchBtn">
-					<img src="pic/Find.svg" />
-				</div>
-				
-				<div class="searchListDiv">
+			<div class="sideBoxContent">
+                <!--搜尋-->
+                <div class="searchBar" v-if="NowSide==0">
+                    <input v-model="SearchString" placeholder="你想找什麼...？" class="searchTxt">
+                    <div class="searchBtn">
+                        <img src="pic/Find.svg" />
+                    </div>
+                </div>
+                
+                <div class="searchListDiv" v-if="NowSide==0">
 
-					<div v-for="item in SearchList" class="searchItem" v-on:click="SearchItemClick">
-						<a v-bind:href="GetHash(item)">
-							<p>{{AllStory[item].title}}</p>
-						</a>
-					</div>
+                    <div v-for="item in SearchList" class="searchItem" v-on:click="SearchItemClick">
+                        <a v-bind:href="GetHash(item)">
+                            <p>{{AllStory[item].title}}</p>
+                        </a>
+                    </div>
 
-					<div class="searchNone"  v-if="SearchList.length>0">
-						<p class="halfOpacity">
-							<span>{{SearchList.length}} 個符合</span>
-						</p>
-					</div>	
+                    <div class="searchNone"  v-if="SearchList.length>=0">
+                        <p class="halfOpacity">{{SearchList.length}} 個符合
+                        </p>
+                    </div>	
 
-				</div>
-				
-				
-			</div>
-			
-			<!--收藏-->
-			<div class="bookmark"  v-if="NowSide==1">
+                </div>
+
+                <!--收藏-->
+                <div class="bookmark"  v-if="NowSide==1">
 				<div v-for="item in BookMark.List" class="bookmarkItem">
 					<a v-bind:href="GetHash(item)" v-on:click="Black(false);SideBox(false);">
 						<p>{{AllStory[item].title}}</p>
 					</a>
 				</div>
 			</div>
+            </div>
 		</div>
 		
 		<!--黑幕-->

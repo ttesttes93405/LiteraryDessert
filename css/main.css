@@ -47,49 +47,69 @@ body {
 
 #app {
   text-align: center;
-  outline: none; }
+  outline: none;
+  width: 100%; }
 
 .nav {
-  text-align: left;
+  display: inline-flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
   position: fixed;
   left: 0;
   top: 0;
-  display: inline-block;
   width: 100%;
-  height: 50px;
-  background-color: #4c9ed9;
+  height: 70px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 30px #FFFFFF;
   box-sizing: border-box;
   padding: 0 0px;
-  z-index: 50;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); }
+  z-index: 50; }
   .nav img {
     width: 30px;
     height: auto;
+    display: inline;
+    cursor: pointer;
     padding: 10px;
-    cursor: pointer; }
+    vertical-align: middle; }
   .nav p {
-    color: white;
-    display: inline-block;
+    color: #4c9ed9;
     line-height: 50px;
+    display: inline;
     cursor: pointer; }
+  .nav .nav-left {
+    flex-grow: 1;
+    justify-content: flex-start;
+    text-align: left;
+    padding-left: 10px; }
+  .nav .nav-right {
+    flex-grow: 0;
+    width: 70px;
+    justify-content: center; }
 
 .container {
   display: inline-block;
-  width: 900px;
-  padding: 100px 0; }
+  width: 700px;
+  padding: 70px 0; }
 
-.sideBox {
-  position: fixed;
-  width: 350px;
-  height: 100vh;
-  display: inline-block;
-  top: 0;
-  right: -350px;
-  padding-top: 80px;
-  border-left: 1px solid rgba(82, 96, 106, 0.12);
-  background-color: white;
-  box-sizing: border-box;
-  z-index: 40; }
+.read-bottom {
+  display: inline-flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  width: 100%;
+  height: 100px; }
+  .read-bottom .read-bottom-left {
+    flex-grow: 1;
+    justify-content: flex-start;
+    text-align: left; }
+  .read-bottom .read-bottom-right {
+    flex-grow: 0;
+    justify-content: center; }
 
 .bigBLACK {
   position: fixed;
@@ -98,7 +118,7 @@ body {
   width: 200%;
   height: 200%;
   cursor: pointer;
-  background-color: black;
+  background-color: #FFFFFF;
   opacity: 0; }
 
 .read {
@@ -108,7 +128,7 @@ body {
   .read .title {
     text-align: center; }
   .read h1 {
-    color: #52606a;
+    color: #5f6164;
     font-size: 40px;
     margin: 50px 0;
     line-height: 60px; }
@@ -117,9 +137,9 @@ body {
     width: 100%;
     min-height: 45px;
     line-height: 45px;
-    color: #52606a;
+    color: #5f6164;
     font-size: 15px;
-    border-bottom: 1px solid rgba(82, 96, 106, 0.12); }
+    border-bottom: 1px solid rgba(95, 97, 100, 0.1); }
 
 .welcome p {
   margin: 20px 0;
@@ -131,113 +151,158 @@ body {
   color: #52606a;
   opacity: 0.8; }
 
-.searchBar {
-  display: inline-block;
-  /*
-  img{
-  	width: 40px;
-  	height: 40px;
-  	padding:10px;
-  }
-  */ }
-  .searchBar .searchTxt {
-    display: inline-block;
-    float: left;
-    font-size: 16px;
-    width: 230px;
-    height: 40px;
-    box-sizing: border-box;
-    color: #4c9ed9;
-    background-color: inherit;
-    border-style: none;
-    border: 1px solid rgba(76, 158, 217, 0.5);
-    padding: 5px 10px;
-    text-align: center;
-    font-weight: 800;
-    margin: 0 0 10px 30px;
-    transition-duration: 0.4s;
-    transition-property: box-shadow; }
-    .searchBar .searchTxt:focus {
-      box-shadow: 0 0 5px rgba(76, 158, 217, 0.8); }
-  .searchBar .searchBtn {
-    margin: 0 30px 10px 20px;
-    display: inline-block;
-    float: left;
-    width: 40px;
-    height: 40px;
-    padding: 0;
-    background-color: inherit;
-    border-style: none;
-    cursor: pointer; }
-    .searchBar .searchBtn img {
-      width: 40px;
-      height: 40px;
-      padding: 0; }
-
-.searchListDiv {
-  float: none;
-  height: 50vh;
-  width: 350px;
-  margin-top: 30px;
-  overflow-y: auto;
-  color: #52606a;
-  text-align: center;
-  border: 1px solid rgba(82, 96, 106, 0.12);
-  border-left-style: none;
-  border-right-style: none; }
-  .searchListDiv .searchItem {
-    display: inline-block;
-    border-bottom: 1px dashed rgba(82, 96, 106, 0.12);
-    height: 50px;
-    width: 80%;
-    font-size: 14px;
-    text-align: left; }
-    .searchListDiv .searchItem a {
-      text-decoration-line: none;
-      color: #52606a; }
-      .searchListDiv .searchItem a p {
-        width: 100%;
-        height: 100%;
-        line-height: 60px;
+.sideBox {
+  position: fixed;
+  max-width: 300px;
+  height: 100vh;
+  display: flex;
+  flex-grow: 0.8;
+  flex-basis: 0%;
+  flex-direction: column;
+  top: 0;
+  right: -300px;
+  padding-top: 10px;
+  background-color: #FFFFFF;
+  box-sizing: border-box;
+  z-index: 60; }
+  .sideBox .sideBoxSelect {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 60px; }
+    .sideBox .sideBoxSelect .sideBoxSelectItem {
+      width: 150px;
+      height: 60px;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-color: rgba(95, 97, 100, 0.1);
+      border-width: 1px; }
+      .sideBox .sideBoxSelect .sideBoxSelectItem .sideBoxSelectItem-Img {
+        height: 40px;
+        width: auto;
         transition-duration: 0.4s;
-        transition-property: color,margin; }
-        .searchListDiv .searchItem a p:hover {
-          color: #4c9ed9;
-          margin-left: -5px; }
-  .searchListDiv .searchNone {
-    margin: 20px 0;
-    text-align: center; }
-
-.bookmark {
-  text-align: center;
-  padding: 20px 40px;
-  margin: 20px 0;
-  overflow-y: auto;
-  border: 1px solid rgba(82, 96, 106, 0.12);
-  border-left-style: none;
-  border-right-style: none; }
-  .bookmark img {
-    width: 40px;
-    height: 40px; }
-  .bookmark .bookmarkItem {
-    display: inline-block;
-    border-bottom: 1px dashed rgba(82, 96, 106, 0.12);
-    min-height: 50px;
-    width: 100%;
-    font-size: 14px;
-    text-align: left; }
-    .bookmark .bookmarkItem a {
-      text-decoration-line: none;
-      color: #52606a; }
-      .bookmark .bookmarkItem a p {
-        width: 100%;
-        height: 100%;
-        line-height: 50px;
+        transition-property: opacity, transform; }
+    .sideBox .sideBoxSelect .sideBoxSelectItem-on {
+      border-style: solid solid none solid; }
+      .sideBox .sideBoxSelect .sideBoxSelectItem-on .sideBoxSelectItem-Img {
+        transform: scale(1.1);
+        opacity: 1; }
+    .sideBox .sideBoxSelect .sideBoxSelectItem-off {
+      border-style: none none solid none; }
+      .sideBox .sideBoxSelect .sideBoxSelectItem-off .sideBoxSelectItem-Img {
+        transform: scale(1);
+        opacity: 0.3; }
+  .sideBox .sideBoxContent {
+    border-left: 1px solid rgba(95, 97, 100, 0.1);
+    border-bottom: 1px solid rgba(95, 97, 100, 0.1);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; }
+    .sideBox .sideBoxContent .searchBar {
+      display: flex;
+      flex: 1;
+      justify-content: center;
+      align-items: center;
+      vertical-align: middle;
+      max-height: 70px;
+      margin: 0 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(95, 97, 100, 0.1); }
+      .sideBox .sideBoxContent .searchBar .searchTxt {
+        display: inline-block;
+        font-size: 16px;
+        height: 40px;
+        margin: 0 10px;
+        width: 200px;
+        box-sizing: border-box;
+        color: #4c9ed9;
+        background-color: inherit;
+        border-style: none;
+        border: 1px solid rgba(76, 158, 217, 0.5);
+        padding: 5px 10px;
+        text-align: center;
+        font-weight: 800;
         transition-duration: 0.4s;
-        transition-property: color, margin; }
-        .bookmark .bookmarkItem a p:hover {
-          margin-left: -5px;
-          color: #4c9ed9; }
+        transition-property: box-shadow; }
+        .sideBox .sideBoxContent .searchBar .searchTxt:focus {
+          box-shadow: 0 0 5px rgba(76, 158, 217, 0.8); }
+      .sideBox .sideBoxContent .searchBar .searchBtn {
+        display: inline-block;
+        width: 40px;
+        height: 40px;
+        padding: 0;
+        margin-left: 10px;
+        background-color: inherit;
+        border-style: none;
+        cursor: pointer; }
+        .sideBox .sideBoxContent .searchBar .searchBtn img {
+          width: 40px;
+          height: 40px;
+          padding: 0; }
+    .sideBox .sideBoxContent .searchListDiv {
+      float: none;
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      margin-top: 30px;
+      overflow-y: auto;
+      color: #52606a;
+      text-align: center; }
+      .sideBox .sideBoxContent .searchListDiv .searchItem {
+        display: inline-block;
+        border-bottom: 1px dashed rgba(95, 97, 100, 0.1);
+        height: 50px;
+        width: 80%;
+        font-size: 14px;
+        text-align: left; }
+        .sideBox .sideBoxContent .searchListDiv .searchItem a {
+          text-decoration-line: none;
+          color: #52606a; }
+          .sideBox .sideBoxContent .searchListDiv .searchItem a p {
+            width: 100%;
+            height: 100%;
+            line-height: 60px;
+            transition-duration: 0.4s;
+            transition-property: color,margin; }
+            .sideBox .sideBoxContent .searchListDiv .searchItem a p:hover {
+              color: #4c9ed9;
+              margin-left: -5px; }
+      .sideBox .sideBoxContent .searchListDiv .searchNone {
+        font-size: 13px;
+        margin: 20px 0;
+        text-align: center; }
+    .sideBox .sideBoxContent .bookmark {
+      text-align: center;
+      padding: 20px 40px;
+      margin: 20px 0;
+      overflow-y: auto; }
+      .sideBox .sideBoxContent .bookmark img {
+        width: 40px;
+        height: 40px; }
+      .sideBox .sideBoxContent .bookmark .bookmarkItem {
+        display: inline-block;
+        border-bottom: 1px dashed rgba(95, 97, 100, 0.1);
+        min-height: 50px;
+        width: 100%;
+        font-size: 14px;
+        text-align: left; }
+        .sideBox .sideBoxContent .bookmark .bookmarkItem a {
+          text-decoration-line: none;
+          color: #52606a; }
+          .sideBox .sideBoxContent .bookmark .bookmarkItem a p {
+            width: 100%;
+            height: 100%;
+            line-height: 50px;
+            transition-duration: 0.4s;
+            transition-property: color, margin; }
+            .sideBox .sideBoxContent .bookmark .bookmarkItem a p:hover {
+              margin-left: -5px;
+              color: #4c9ed9; }
 
 .bookmarkBtn {
   display: inline-block;
@@ -259,23 +324,6 @@ body {
     color: #52606a;
     padding: 0 10px; }
 
-.sideBoxSelect .sideBoxSelectItem {
-  cursor: pointer;
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  margin: 10px;
-  border-radius: 10000px;
-  opacity: 0.3;
-  transition-duration: 0.4s;
-  transition-property: opacity, transform; }
-  .sideBoxSelect .sideBoxSelectItem .sideBoxSelectItem-Img {
-    width: 100%;
-    height: 100%; }
-.sideBoxSelect .sideBoxSelectItem-on {
-  opacity: 1;
-  transform: scale(1.1); }
-
 .GetRandom {
   background-color: #4c9ed9;
   display: inline-block;
@@ -294,7 +342,7 @@ body {
     transform: scale(1.1); }
 
 .bottomDiv {
-  border-top: 1px solid rgba(82, 96, 106, 0.12); }
+  border-top: 1px solid rgba(95, 97, 100, 0.1); }
   .bottomDiv img {
     width: 40px;
     height: 40px;
@@ -313,9 +361,6 @@ body {
 .halfOpacity {
   opacity: 0.3; }
 
-.logo {
-  display: inline-block; }
-
 .HeadO {
   display: inline-block;
   height: 80px;
@@ -327,7 +372,7 @@ body {
     margin: 0 !important;
     line-height: 80px;
     color: white !important;
-    font-size: 22.85714px; }
+    font-size: 22.8571428571px; }
   .HeadO img {
     width: 50px;
     padding: 15px; }
@@ -343,16 +388,14 @@ body {
 .circle {
   border-radius: 10000px; }
 
-.littleP {
+.tag {
+  display: inline;
   font-size: 13px;
-  opacity: 0.3;
-  padding: 30px 0; }
-
-.nav-right {
-  float: right; }
-
-.nav-left {
-  float: left; }
+  letter-spacing: 1px;
+  padding: 8px 12px;
+  color: #666;
+  border: rgba(102, 102, 102, 0.3) 1px solid;
+  border-radius: 5px; }
 
 .text-right {
   text-align: right; }
@@ -373,15 +416,7 @@ hide, .hide {
 
 @media screen and (max-width: 1000px) {
   .nav {
-    text-align: center;
-    	/*
-    	.sideBtn{
-    	position: fixed;
-    	right:0;
-    	top:0;
-    	float:none;
-    }
-    	*/ }
+    text-align: center; }
     .nav .logo {
       margin-left: 25px; }
 

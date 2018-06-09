@@ -1,48 +1,69 @@
 
-var Dictionary = {
-	List: [],
-	Add: function(item){
-		if (!this.Has(item)){
-			this.List.push(item);
-			this.Save();
-		}
-	},
-	Remove: function(item){
-		if (this.Has(item)){
-			this.List = this.List.filter(i => i !== item);
-			this.Save();
-		}
-	},
-	Has: function(item){
-		return (this.List.indexOf(item) != -1);
-	},
-	Toggle: function(item){
-		if (this.Has(item)){
-			this.Remove(item);
-		}
-		else{
-			this.Add(item);
-		}
-	},
-	CleanEmpty: function(){
-		this.Remove("");
-	},
-	Save: function(){
-		localStorage["BookMark"] = this.List.join(",");
-	}
+//------------------------------
+//工具
+var Utility = {
+    
+    //範圍內隨機值
+    Random: {
+        Value: function(){
+            return Math.random();
+        },
+        Range: function(min, max){
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+    },
+
+    //Dictionary
+    Dictionary: {
+        List: [],
+        Add: function(item) {
+            if (!this.Has(item)) {
+                this.List.push(item);
+                this.Save();
+            }
+        },
+        Remove: function(item) {
+            if (this.Has(item)) { 
+                this.List = this.List.filter(i => (i !== item));
+                this.Save();
+            }
+        },
+        Has: function(item) {
+            return (this.List.indexOf(item) != -1);
+        },
+        Toggle: function(item) {
+            if (this.Has(item)) {
+                this.Remove(item);
+            }
+            else{
+                this.Add(item);
+            }
+        },
+        CleanEmpty: function() {
+            this.Remove("");
+        },
+        Save: function() {
+            localStorage["BookMark"] = this.List.join(",");
+        },
+        Create: function(){
+            return this;
+        }
+    }
+    
 }
 
+//------------------------------
 //Vue
 var vm = new Vue({
 	el:"#app",
 	data:{
 		AllStory	: [{title:"",content:""}],
 		StoryInx	: 0,
-		NowDiv		: 1,		//Welcome,Read,Search
-		NowSide		: 0,
+		NowDiv		: 1,             //Welcome,Read,Search
+		NowSide		: 0,             //側邊欄分頁
 		Side		: false,
-		SearchList	:[],
-		BookMark	: Dictionary,
+		SearchList	: [],
+		BookMark	: Utility.Dictionary.Create(),
 		SearchString:""
 	},
 	computed:{
@@ -57,9 +78,12 @@ var vm = new Vue({
 			var Arr = [];
 			if (this.SearchString != ""){
 				for(var i=0;i<this.AllStory.length;i++){
-					if (this.AllStory[i].title.indexOf(this.SearchString) != -1)	{
+					if (this.AllStory[i].title.indexOf(this.SearchString) != -1){  //title
 						Arr.push(i);
 					}
+                    else if(this.AllStory[i].group.indexOf(this.SearchString) != -1){   //group
+                        Arr.push(i);
+                    }
 				}
 			}
 			this.ShowSearchList(Arr);
@@ -120,52 +144,25 @@ $(function(){
 	vm.BookMark.List = localStorage["BookMark"].split(",");
 	vm.BookMark.CleanEmpty();
 	
-	//console.log(vm.BookMark.List);
-	
 });
 
 //------------------------------
+//顯示與資料
+
+//隨機抽故事
+function GetRandomStory(){
+	ChangeHash(Utility.Random.Range(0, vm.AllStory.length));
+	vm.NowDiv = 0;
+}
 
 //開關書籤
 function ToggleBookMark(){;
 	vm.BookMark.Toggle(vm.StoryInx);
-	//console.log(vm.BookMark.List);
 }
 
-//側邊攔
-var isSiding = false;
-function SideBox(b){
-	if (isSiding) return;
-	
-	Black(b);
-	isSiding = true;
-	$(".sideBox").animate({"right":(b)?"0":"-350px"},300,function(){
-		isSiding = false;
-	});
-	
-	if (b){
-		if (vm.NowSide == 0){
-			$(".searchTxt").focus();
-		}
-	}
-	
-}
 
-//黑幕
-function Black(b){
-	
-	if (isSiding) return;
-	
-	if (b){
-		$(".bigBLACK").show().animate({"opacity":"0.3"},400);		
-	}
-	else{
-		vm.Side = false;
-		$(".bigBLACK").animate({"opacity":"0"},400,function(){
-			$(".bigBLACK").hide();
-		});
-	}
-}
+//------------------------------
+//資料
 
 //取得JSON
 function GetData(){
@@ -181,7 +178,7 @@ function GetData(){
 }
 
 //解Hash
-function ParseUrl(isFast){
+function ParseUrl(){
 	var url_hash = location.hash;
 		
 	if (url_hash.indexOf("#") != -1){
@@ -205,31 +202,76 @@ function ParseUrl(isFast){
 	return -1;	
 }
 
-//隨機抽故事
-function GetRandomStory(){
-	ChangeHash(Range(0,vm.AllStory.length));
-	vm.NowDiv = 0;
-}
-
 //改變Hash
 function ChangeHash(inx){
 	location.hash = "inx-" + inx;
 }
 
+
+//------------------------------
+//顯示
+
+//開關側邊攔
+var isSiding = false;
+function SideBox(b){
+	if (isSiding) return;
+	
+	Black(b);
+	isSiding = true;
+    var sideWidth = $(".sideBox").css("width").replace("px","");
+    
+    if (b){
+        $(".sideBox").animate({"right":"0"},300,function(){
+            isSiding = false;
+        });
+        $("#app").animate({marginLeft:(-sideWidth/2)+"px"},400);
+        if($(".nav").css("width").replace("px","")>400)
+            $(".nav").animate({paddingRight:sideWidth+"px"},400);
+        
+		if (vm.NowSide == 0){
+			$(".searchTxt").focus();
+		}
+    }
+    else{
+        $(".sideBox").animate({"right":"-350px"},300,function(){
+            isSiding = false;
+        });
+        $("#app").animate({marginLeft:"0px"},400);
+        $(".nav").animate({paddingRight:"0px"},400);
+        
+    }
+}
+
+//黑幕
+function Black(b){
+	
+	if (isSiding) return;
+	
+	if (b){
+		$(".bigBLACK").show().animate({"opacity":"0.7"},400);
+	}
+	else{
+		vm.Side = false;
+		$(".bigBLACK").animate({"opacity":"0"},400,function(){
+			$(".bigBLACK").hide();
+		});
+	}
+}
+
 //故事淡入
 function FadeChange(inx){
+    if(inx < 0 ) return;
+    if(vm.AllStory[inx].title == "") return;
+    
 	vm.StoryInx = inx;
-	if(inx >= 0){ vm.NowDiv = 0; }
+    
+	vm.NowDiv = 0;
+    
 	$(".read").css("opacity", 0).animate({opacity:1}, 1000);
 	Topit();
 }
 
-//指定範圍
-function Range(min,max){
-	return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-//TOP
+//回頂部
 var isScrolling = false;
 function Topit(){
 	if (!isScrolling){
