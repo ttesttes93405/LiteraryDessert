@@ -7,13 +7,13 @@ $BlackColor: #5f6164;
 $MixValue:0.2;
 $DeepFontColor:#52606a ;//(#4c9ed9*$MixValue + #414141*(1 - $MixValue)); //#414141;
 
-$LightColor: #EFEFEF;
+$LightColor: #F8F8F8;
 $LineColor:  rgba($BlackColor, 0.1);
 
 
-
 $NavHeight: 70px;
-$SideWidth: 300px;
+$SideWidth: 400px;
+$SideWidth-s: 300px;
 
 body {
 	-moz-user-select : none;
@@ -24,6 +24,20 @@ body {
 	text-align: center;
 	outline: none;
 	width: 100%;
+	margin-left: -$SideWidth/2;
+
+	transition-property: margin-left;
+	transition-duration: 0.4s;
+
+	&.sideBox-off{
+		margin-left: 0;
+	}
+}
+
+
+a{
+	text-decoration-line: none !important;
+	text-decoration: none !important;
 }
 
 .nav{
@@ -65,11 +79,16 @@ body {
 		justify-content: flex-start;
 		text-align: left;
 		padding-left: 10px;
+		opacity: 0.8;
 	}
 	.nav-right{
 		flex-grow: 0;
 		width: $NavHeight;
 		justify-content: center;
+		opacity: 0.8;
+	}
+	.logo-title{
+		letter-spacing: 1px;
 	}
 
 }
@@ -105,20 +124,25 @@ body {
 }
 
 
-
-
 .bigBLACK{
+	
 	position: fixed;
 	left:-50%;
 	top:-50%;
 	width:200%;
 	height: 200%;
 	cursor: pointer;
-
 	background-color: $BlackColor;
-	opacity: 0;
+	opacity: 0.5;
 	z-index: 55;
-
+	
+	transition-property: opacity;
+	transition-duration: 1s;
+	
+	&.bigBLACK-off{
+		opacity: 0;
+		display: none;
+	}
 }
 
 
@@ -136,6 +160,7 @@ body {
 		font-size: 40px;
 		margin:50px 0;
 		line-height: 60px;
+		letter-spacing: 3px;
 	}
 	.word{
 		display: inline-block;
@@ -143,7 +168,7 @@ body {
 		min-height: 45px;
 		line-height: 45px;
 		color: $BlackColor;
-		font-size: 15px;
+		font-size: 16px;
 		border-bottom:1px solid $LineColor;
 	}
 }
@@ -174,19 +199,27 @@ body {
 	flex-grow: 0.8;
 	flex-basis: 0%;
 
+	right: 0;
 	flex-direction: column;
 	top:0;
-	right: -$SideWidth;
 	//padding-top: 10px;
 	background-color: $WhiteColor;
 	box-sizing: border-box;
 	z-index: 60;
+
+	transition-property: right;
+	transition-duration: 0.5s;
+
+	&.sideBox-off{
+		right: -$SideWidth;
+	}
 
 	.header{
 		display: flex;
 		justify-content: center;
 		align-items: center;
 		flex-direction: row;
+		min-height: $NavHeight;
 		height: $NavHeight;
 		background-color: rgba($MainColor,0.15);	
 
@@ -239,7 +272,7 @@ body {
 				display: inline-block;
 				font-size: 15px;
 				line-height: $ContentTitleHeight;
-				color: $DeepFontColor;
+				color: $MainColor;
 				font-weight: 500;
 
 			}
@@ -249,7 +282,6 @@ body {
 			border-bottom: 1px dashed $LineColor;
 			min-height: 50px;
 			width: 100%;
-			font-size: 14px;
 			text-align: left;
 
 			a{
@@ -259,18 +291,21 @@ body {
 
 				p{
 					width:100%;
-					padding: 0 10px;
+					padding: 0 30px;
 					height:100%;
 					line-height: 50px;
 					box-sizing: border-box;
+					font-size: 15px;
+					background-color: rgba($MainColor,0);
 
-					transition-duration: 0.4s;
-					transition-property: color, margin;
+					transition-property: color, background-color;
+					transition-duration: 0.4s, 0.4s;
+
 
 
 					&:hover{
-						margin-left:-5px;
 						color: $MainColor;
+						background-color: rgba($MainColor,0.1);
 					}
 				}
 			}
@@ -278,10 +313,18 @@ body {
 		.content-item:last-child{
 			border-style: none;
 		}
+		.content-container{
+
+			padding: 20px 0;
+			background-color: $LightColor;
+			border: 1px solid rgba($BlackColor, 0.08);
+			border-radius: 25px;
+			box-sizing: border-box;
+		}
 
 		.searchBar{
 			display: flex;
-			flex:1;
+			flex: 0;
 			flex-direction: row;
 
 			justify-content: center;
@@ -289,9 +332,14 @@ body {
 			vertical-align: middle;
 
 			border-radius: 20px;
-			border: 1px solid rgba($MainColor,0.5);
+			border: 1px solid rgba($MainColor,0.3);
+			background-color: rgba($MainColor,0.05);
 
-			max-height: 70px;
+			margin-bottom: 20px;
+
+			min-height: 40px;
+			height: 40px;
+			max-height: 40px;
 
 			//border-bottom: 1px solid $LineColor;
 			box-sizing:border-box;
@@ -351,11 +399,6 @@ body {
 
 		.searchListDiv{
 
-			padding: 20px;
-			background-color: rgba($BlackColor,0.1);
-			border-radius: 25px;
-			box-sizing: border-box;
-
 
 			float: none;
 			display: flex;
@@ -377,18 +420,12 @@ body {
 
 		.bookmarkDiv{
 
-			padding: 20px;
-			background-color: rgba($BlackColor,0.1);
-			border-radius: 25px;
-			box-sizing: border-box;
-
 			text-align: center;
 			margin: 10px 0;
 			overflow-y: auto;
 
 		}
 	}
-
 }
 
 .bookmarkBtn{
@@ -398,24 +435,24 @@ body {
 	justify-content: center;
 	align-items: center;
 
-	height: 50px;
+	height: 40px;
 	cursor: pointer;
 	border-radius: 25px;
 
 	background-color: rgba($MainColor, 0.2);
 
 
-	transition-duration: 0.4s;
-	transition-property: transform;
+	transition-property: transform, background-color;
+	transition-duration: 0.4s, 1s;
 
 	&:hover{
 		transform: scale(1.1);
 	}
 
 	img{
-		padding:10px;
-		height:30px;
-		width:30px;		
+		padding:13px;
+		height:24px;
+		width:24px;		
 	}
 	p{
 		display: inline-block;
@@ -426,71 +463,99 @@ body {
 	}
 }
 .bookmarkBtn-off{	
-	background-color: rgba($BlackColor, 0.15);
+	background-color: rgba($BlackColor, 0.1);
 	p{
 		color: $DeepFontColor;
 	}
 }
-.RandomList{
+
+.RandomDiv{
 	margin: 80px 0;
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+	.div-title{
+		color: $DeepFontColor;
+		font-size: 20px;
+		opacity: 0.3;
+		margin: 20px;
+	}
 
-	.RandomItem{
+	.RandomList{
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
 
-		background-color: $LightColor;	
-		display: inline-block;
-		width: 200px;
-		height: 120px;
-		cursor: pointer;
-		margin: 10px;
-		padding: 15px;
-		box-sizing: border-box;
-		border-radius: 15px;
+		.RandomItem{
 
-		box-shadow: 0 0 10px rgba(black,0.2);
-
-		img{
-			width: 30px;
-			height: 30px;
-			padding:15px;
-		}
-		.title-contain{
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			height: 50px;
-		}
-		.title{
-			color: $DeepFontColor;
-			font-size: 20px;
-			margin-bottom: 15px;
-			word-wrap: break-word;
-		}
-		.content{
-			color: $DeepFontColor;
-			font-size: 15px;
-		}
-		.tag{
-			opacity: 0.5;
-		}
-		a{
-			text-decoration-line: none !important;
+			background-color: $LightColor;	
 			display: inline-block;
-			width: 100%;
-			height: 100%;
-		}
+			width: 300px;
+			height: 190px;
+			cursor: pointer;
+			margin: 10px;
+			padding: 15px;
+			box-sizing: border-box;
+			border-radius: 15px;
 
-		transition-property: transform;
-		transition-duration: 0.4s;
-		&:hover{
-			transform: scale(1.05);
+			border: 1px solid rgba($BlackColor,0.08);
+			overflow: hidden;
+			//box-shadow: 0 0 10px rgba(black,0.2);
+
+			img{
+				width: 30px;
+				height: 30px;
+				padding:15px;
+			}
+			.title-contain{
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				height: 50px;
+			}
+			.title{
+				color: $DeepFontColor;
+				font-size: 20px;
+				margin-bottom: 15px;
+				word-wrap: break-word;
+			}
+			.content{
+				color: $DeepFontColor;
+				font-size: 15px;
+				text-align: left;
+				line-height: 20px;
+				height: 80px;
+				margin-top: 10px;
+				letter-spacing: 1px;
+				opacity: 0.2;
+			}
+			.tag{
+				opacity: 0.5;
+			}
+			a{
+				display: inline-block;
+				width: 100%;
+				height: 100%;
+			}
+			.gradient {
+				position: relative;
+				top: -40px;
+				height: 40px;
+				width: 100%;
+
+				$EndValue: 0.9;
+				background: -moz-linear-gradient(top, rgba($LightColor,0) 0%, rgba($LightColor,$EndValue) 100%); /* FF3.6-15 */
+				background: -webkit-linear-gradient(top, rgba($LightColor,0) 0%,rgba($LightColor,$EndValue) 100%); /* Chrome10-25,Safari5.1-6 */
+				background: linear-gradient(to bottom, rgba($LightColor,0) 0%,rgba($LightColor,$EndValue) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+			}
+
+			transition-property: transform;
+			transition-duration: 0.4s;
+			&:hover{
+				transform: scale(1.03);
+			}
 		}
 	}
 }
-
 
 .bottomDiv{
 	border-top: 1px solid $LineColor;
@@ -623,14 +688,28 @@ hide, .hide{
 				min-height: 35px;
 				line-height: 35px;
 				border-style: none;
+				font-size: 15px;
 			}
 		}
 	}
 
-	.RandomList{
-		flex-direction: column;
-		.RandomItem{
-			width:80vw;
+	.RandomDiv{
+		.RandomList{
+			flex-direction: column;
+			.RandomItem{
+				width:80vw;
+			}
+		}
+	}
+
+
+	.sideBox{
+		
+		max-width: $SideWidth-s;
+		right: 0;
+
+		&.sideBox-off{
+			right: -$SideWidth-s;
 		}
 	}
 }

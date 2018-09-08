@@ -29,14 +29,14 @@
 
 	<body>
 
-		<div id="app" style="display:none">
+		<div id="app" style="display:none"  v-bind:class="{'sideBox-off':!Side}">
 
 			<!--導航欄-->
 			<div class="nav">
 
 				<div class="nav-left" v-on:click="Topit()">
 					<img src="pic/Icon_Blue.svg"/>
-					<p class="">Literary Dessert</p>
+					<p class="logo-title">Literary Dessert</p>
 				</div>
 				<div class="nav-right">
 					<img src="pic/Menu.svg" v-on:click="SideToggle()"/>
@@ -73,29 +73,36 @@
 						<p>Hello</p>
 					</div>
 					<p>每個故事，都是不同口味的點心</p>
-					<h1>按下抽一個故事</h1>
+					<h1>挑選一個故事</h1>
 				</div>
 
 				<!--抽故事-->
-				<div class="RandomList">
-					<div  v-for="(item,index) in RandomSroty" 
-						 class="RandomItem" title="抽一個故事">
-						<a v-bind:href="GetHash(item)">
-							<div class="title-contain">
-								<h1 class="title">{{AllStory[item].title}}</h1>
-							</div>
-							<p class="tag">Type_{{AllStory[item].type}}</p>
-						</a>
-					</div>
-
-					<div v-on:click="GetRandomStory()" class="RandomItem" title="抽一個故事">
-
-						<div class="title-contain">
-							<h1 class="title">？？？</h1>
+				<div class="RandomDiv">
+				
+					<h1 class="div-title">其他故事</h1>
+					
+					<div class="RandomList">
+						<div  v-for="(item,index) in RandomSroty" 
+							 class="RandomItem" title="抽一個故事">
+							<a v-bind:href="GetHash(item)">
+								<div class="title-contain">
+									<h1 class="title">{{AllStory[item].title}}</h1>
+								</div>
+								<p class="tag">Type_{{AllStory[item].type}}</p>
+								<p class="content">{{GetSummary(RandomSroty[index])}}</p>
+								<div class="gradient"></div>
+							</a>
 						</div>
-						<p class="tag">隨機</p>
-
 					</div>
+
+					<!--
+<div v-on:click="GetRandomStory()" class="RandomItem" title="抽一個故事">
+<div class="title-contain">
+<h1 class="title">？？？</h1>
+</div>
+<p class="tag">隨機</p>
+</div>
+-->
 
 				</div>
 
@@ -118,7 +125,7 @@
 			</div>
 
 			<!-- 側邊攔 -->
-			<div class="sideBox">
+			<div class="sideBox" v-bind:class="{'sideBox-off':!Side}">
 
 				<!--功能切換-->
 				<div class="sideBoxSelect hide">
@@ -142,7 +149,7 @@
 
 
 					<!--搜尋-->
-					<div class="searchListDiv">
+					<div class="searchListDiv content-container">
 
 						<div class="content-title">
 							<img src="pic/Find.svg" />
@@ -175,13 +182,13 @@
 					</div>
 
 					<!--收藏-->
-					<div class="bookmarkDiv">
+					<div class="bookmarkDiv content-container">
 						<div class="content-title">
 							<img src="pic/Star.svg" />
 							<h1>收藏</h1>
 						</div>
 						<div v-for="item in BookMark.List" class="content-item">
-							<a v-bind:href="GetHash(item)" v-on:click="Black(false);SideBox(false);">
+							<a v-bind:href="GetHash(item)" v-on:click="SideBox(false);">
 								<p>{{AllStory[item].title}}</p>
 							</a>
 						</div>
@@ -191,7 +198,7 @@
 			</div>
 
 			<!--黑幕-->
-			<div class="bigBLACK" v-on:click="Black(false);SideBox(false);"></div>
+			<div class="bigBLACK" v-on:click="SideBox(false);" v-bind:class="{'bigBLACK-off':!Black}"></div>
 
 		</div>
 

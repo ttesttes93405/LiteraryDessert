@@ -48,7 +48,16 @@ body {
 #app {
   text-align: center;
   outline: none;
-  width: 100%; }
+  width: 100%;
+  margin-left: -200px;
+  transition-property: margin-left;
+  transition-duration: 0.4s; }
+  #app.sideBox-off {
+    margin-left: 0; }
+
+a {
+  text-decoration-line: none !important;
+  text-decoration: none !important; }
 
 .nav {
   display: inline-flex;
@@ -62,7 +71,7 @@ body {
   top: 0;
   width: 100%;
   height: 70px;
-  background-color: rgba(239, 239, 239, 0.8);
+  background-color: rgba(248, 248, 248, 0.8);
   box-sizing: border-box;
   padding: 0 0px;
   z-index: 50; }
@@ -82,11 +91,15 @@ body {
     flex-grow: 1;
     justify-content: flex-start;
     text-align: left;
-    padding-left: 10px; }
+    padding-left: 10px;
+    opacity: 0.8; }
   .nav .nav-right {
     flex-grow: 0;
     width: 70px;
-    justify-content: center; }
+    justify-content: center;
+    opacity: 0.8; }
+  .nav .logo-title {
+    letter-spacing: 1px; }
 
 .container {
   display: inline-block;
@@ -118,8 +131,13 @@ body {
   height: 200%;
   cursor: pointer;
   background-color: #5f6164;
-  opacity: 0;
-  z-index: 55; }
+  opacity: 0.5;
+  z-index: 55;
+  transition-property: opacity;
+  transition-duration: 1s; }
+  .bigBLACK.bigBLACK-off {
+    opacity: 0;
+    display: none; }
 
 .read {
   padding: 0 50px;
@@ -131,14 +149,15 @@ body {
     color: #5f6164;
     font-size: 40px;
     margin: 50px 0;
-    line-height: 60px; }
+    line-height: 60px;
+    letter-spacing: 3px; }
   .read .word {
     display: inline-block;
     width: 100%;
     min-height: 45px;
     line-height: 45px;
     color: #5f6164;
-    font-size: 15px;
+    font-size: 16px;
     border-bottom: 1px solid rgba(95, 97, 100, 0.1); }
 
 .welcome p {
@@ -153,23 +172,28 @@ body {
 
 .sideBox {
   position: fixed;
-  max-width: 300px;
+  max-width: 400px;
   height: 100vh;
   overflow-y: auto;
   display: flex;
   flex-grow: 0.8;
   flex-basis: 0%;
+  right: 0;
   flex-direction: column;
   top: 0;
-  right: -300px;
   background-color: #FFFFFF;
   box-sizing: border-box;
-  z-index: 60; }
+  z-index: 60;
+  transition-property: right;
+  transition-duration: 0.5s; }
+  .sideBox.sideBox-off {
+    right: -400px; }
   .sideBox .header {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: row;
+    min-height: 70px;
     height: 70px;
     background-color: rgba(76, 158, 217, 0.15); }
     .sideBox .header img {
@@ -205,41 +229,52 @@ body {
         display: inline-block;
         font-size: 15px;
         line-height: 20px;
-        color: #52606a;
+        color: #4c9ed9;
         font-weight: 500; }
     .sideBox .sideBoxContent .content-item {
       display: inline-block;
       border-bottom: 1px dashed rgba(95, 97, 100, 0.1);
       min-height: 50px;
       width: 100%;
-      font-size: 14px;
       text-align: left; }
       .sideBox .sideBoxContent .content-item a {
         text-decoration-line: none;
         color: #52606a; }
         .sideBox .sideBoxContent .content-item a p {
           width: 100%;
-          padding: 0 10px;
+          padding: 0 30px;
           height: 100%;
           line-height: 50px;
           box-sizing: border-box;
-          transition-duration: 0.4s;
-          transition-property: color, margin; }
+          font-size: 15px;
+          background-color: rgba(76, 158, 217, 0);
+          transition-property: color, background-color;
+          transition-duration: 0.4s, 0.4s; }
           .sideBox .sideBoxContent .content-item a p:hover {
-            margin-left: -5px;
-            color: #4c9ed9; }
+            color: #4c9ed9;
+            background-color: rgba(76, 158, 217, 0.1); }
     .sideBox .sideBoxContent .content-item:last-child {
       border-style: none; }
+    .sideBox .sideBoxContent .content-container {
+      padding: 20px 0;
+      background-color: #F8F8F8;
+      border: 1px solid rgba(95, 97, 100, 0.08);
+      border-radius: 25px;
+      box-sizing: border-box; }
     .sideBox .sideBoxContent .searchBar {
       display: flex;
-      flex: 1;
+      flex: 0;
       flex-direction: row;
       justify-content: center;
       align-items: center;
       vertical-align: middle;
       border-radius: 20px;
-      border: 1px solid rgba(76, 158, 217, 0.5);
-      max-height: 70px;
+      border: 1px solid rgba(76, 158, 217, 0.3);
+      background-color: rgba(76, 158, 217, 0.05);
+      margin-bottom: 20px;
+      min-height: 40px;
+      height: 40px;
+      max-height: 40px;
       box-sizing: border-box; }
       .sideBox .sideBoxContent .searchBar .left-block {
         display: flex;
@@ -274,10 +309,6 @@ body {
           height: 30px;
           padding: 0; }
     .sideBox .sideBoxContent .searchListDiv {
-      padding: 20px;
-      background-color: rgba(95, 97, 100, 0.1);
-      border-radius: 25px;
-      box-sizing: border-box;
       float: none;
       display: flex;
       flex-direction: column;
@@ -292,10 +323,6 @@ body {
         margin: 20px 0 0 0;
         text-align: center; }
     .sideBox .sideBoxContent .bookmarkDiv {
-      padding: 20px;
-      background-color: rgba(95, 97, 100, 0.1);
-      border-radius: 25px;
-      box-sizing: border-box;
       text-align: center;
       margin: 10px 0;
       overflow-y: auto; }
@@ -305,18 +332,18 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  height: 50px;
+  height: 40px;
   cursor: pointer;
   border-radius: 25px;
   background-color: rgba(76, 158, 217, 0.2);
-  transition-duration: 0.4s;
-  transition-property: transform; }
+  transition-property: transform, background-color;
+  transition-duration: 0.4s, 1s; }
   .bookmarkBtn:hover {
     transform: scale(1.1); }
   .bookmarkBtn img {
-    padding: 10px;
-    height: 30px;
-    width: 30px; }
+    padding: 13px;
+    height: 24px;
+    width: 24px; }
   .bookmarkBtn p {
     display: inline-block;
     height: 40px;
@@ -325,55 +352,78 @@ body {
     padding-right: 20px; }
 
 .bookmarkBtn-off {
-  background-color: rgba(95, 97, 100, 0.15); }
+  background-color: rgba(95, 97, 100, 0.1); }
   .bookmarkBtn-off p {
     color: #52606a; }
 
-.RandomList {
-  margin: 80px 0;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center; }
-  .RandomList .RandomItem {
-    background-color: #EFEFEF;
-    display: inline-block;
-    width: 200px;
-    height: 120px;
-    cursor: pointer;
-    margin: 10px;
-    padding: 15px;
-    box-sizing: border-box;
-    border-radius: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    transition-property: transform;
-    transition-duration: 0.4s; }
-    .RandomList .RandomItem img {
-      width: 30px;
-      height: 30px;
-      padding: 15px; }
-    .RandomList .RandomItem .title-contain {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 50px; }
-    .RandomList .RandomItem .title {
-      color: #52606a;
-      font-size: 20px;
-      margin-bottom: 15px;
-      word-wrap: break-word; }
-    .RandomList .RandomItem .content {
-      color: #52606a;
-      font-size: 15px; }
-    .RandomList .RandomItem .tag {
-      opacity: 0.5; }
-    .RandomList .RandomItem a {
-      text-decoration-line: none !important;
+.RandomDiv {
+  margin: 80px 0; }
+  .RandomDiv .div-title {
+    color: #52606a;
+    font-size: 20px;
+    opacity: 0.3;
+    margin: 20px; }
+  .RandomDiv .RandomList {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; }
+    .RandomDiv .RandomList .RandomItem {
+      background-color: #F8F8F8;
       display: inline-block;
-      width: 100%;
-      height: 100%; }
-    .RandomList .RandomItem:hover {
-      transform: scale(1.05); }
+      width: 300px;
+      height: 190px;
+      cursor: pointer;
+      margin: 10px;
+      padding: 15px;
+      box-sizing: border-box;
+      border-radius: 15px;
+      border: 1px solid rgba(95, 97, 100, 0.08);
+      overflow: hidden;
+      transition-property: transform;
+      transition-duration: 0.4s; }
+      .RandomDiv .RandomList .RandomItem img {
+        width: 30px;
+        height: 30px;
+        padding: 15px; }
+      .RandomDiv .RandomList .RandomItem .title-contain {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50px; }
+      .RandomDiv .RandomList .RandomItem .title {
+        color: #52606a;
+        font-size: 20px;
+        margin-bottom: 15px;
+        word-wrap: break-word; }
+      .RandomDiv .RandomList .RandomItem .content {
+        color: #52606a;
+        font-size: 15px;
+        text-align: left;
+        line-height: 20px;
+        height: 80px;
+        margin-top: 10px;
+        letter-spacing: 1px;
+        opacity: 0.2; }
+      .RandomDiv .RandomList .RandomItem .tag {
+        opacity: 0.5; }
+      .RandomDiv .RandomList .RandomItem a {
+        display: inline-block;
+        width: 100%;
+        height: 100%; }
+      .RandomDiv .RandomList .RandomItem .gradient {
+        position: relative;
+        top: -40px;
+        height: 40px;
+        width: 100%;
+        background: -moz-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0.9) 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0.9) 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(to bottom, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0.9) 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
+      .RandomDiv .RandomList .RandomItem:hover {
+        transform: scale(1.03); }
 
 .bottomDiv {
   border-top: 1px solid rgba(95, 97, 100, 0.1); }
@@ -463,11 +513,18 @@ hide, .hide {
       .container .read .word {
         min-height: 35px;
         line-height: 35px;
-        border-style: none; }
+        border-style: none;
+        font-size: 15px; }
 
-  .RandomList {
+  .RandomDiv .RandomList {
     flex-direction: column; }
-    .RandomList .RandomItem {
-      width: 80vw; } }
+    .RandomDiv .RandomList .RandomItem {
+      width: 80vw; }
+
+  .sideBox {
+    max-width: 300px;
+    right: 0; }
+    .sideBox.sideBox-off {
+      right: -300px; } }
 
 /*# sourceMappingURL=main.css.map */
