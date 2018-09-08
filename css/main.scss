@@ -7,7 +7,10 @@ $BlackColor: #5f6164;
 $MixValue:0.2;
 $DeepFontColor:#52606a ;//(#4c9ed9*$MixValue + #414141*(1 - $MixValue)); //#414141;
 
-$LineColor:  rgba($BlackColor, 0.1); 
+$LightColor: #EFEFEF;
+$LineColor:  rgba($BlackColor, 0.1);
+
+
 
 $NavHeight: 70px;
 $SideWidth: 300px;
@@ -20,23 +23,24 @@ body {
 #app{
 	text-align: center;
 	outline: none;
-    width: 100%;
+	width: 100%;
 }
 
 .nav{
-    display: inline-flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    
+	display: inline-flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+
 	position: fixed;
 	left: 0;
 	top: 0;
 	width: 100%;
 	height: $NavHeight;
-	background-color: rgba($WhiteColor, 0.9); box-shadow: 0 0 30px $WhiteColor ;
+	background-color: rgba($LightColor,0.8); 
+	//box-shadow: 0 0 30px $WhiteColor ;
 	box-sizing: border-box;
 	padding:0 0px;
 	z-index: 50;
@@ -44,29 +48,29 @@ body {
 	img{
 		width: 30px;
 		height: auto;
-        display: inline;
+		display: inline;
 		cursor: pointer;
-        padding: 10px;
-        vertical-align: middle;
+		padding: 10px;
+		vertical-align: middle;
 	}
 	p{
 		color: $MainColor;
 		line-height: 50px;
-        display: inline;
+		display: inline;
 		cursor: pointer;
 	}
-    
-    .nav-left{
-        flex-grow: 1;
-        justify-content: flex-start;
-        text-align: left;
-        padding-left: 10px;
-    }
-    .nav-right{
-        flex-grow: 0;
-        width: $NavHeight;
-        justify-content: center;
-    }
+
+	.nav-left{
+		flex-grow: 1;
+		justify-content: flex-start;
+		text-align: left;
+		padding-left: 10px;
+	}
+	.nav-right{
+		flex-grow: 0;
+		width: $NavHeight;
+		justify-content: center;
+	}
 
 }
 .container{
@@ -77,27 +81,27 @@ body {
 
 
 .read-bottom{
-    
-    display: inline-flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    width: 100%;
-    height: 100px;
-    
-    .read-bottom-left{
-        
-        flex-grow: 1;
-        justify-content: flex-start;
-        text-align: left;
-    }
-    .read-bottom-right{
-        flex-grow: 0;
-        justify-content: center;
-    }
-    
+
+	display: inline-flex;
+	flex-direction: row;
+	align-content: center;
+	justify-content: center;
+	align-items: center;
+	vertical-align: middle;
+	width: 100%;
+	height: 100px;
+
+	.read-bottom-left{
+
+		flex-grow: 1;
+		justify-content: flex-start;
+		text-align: left;
+	}
+	.read-bottom-right{
+		flex-grow: 0;
+		justify-content: center;
+	}
+
 }
 
 
@@ -111,8 +115,9 @@ body {
 	height: 200%;
 	cursor: pointer;
 
-	background-color: $WhiteColor;
-	opacity:0;
+	background-color: $BlackColor;
+	opacity: 0;
+	z-index: 55;
 
 }
 
@@ -157,291 +162,332 @@ body {
 	}
 }
 
-
-
-
 .sideBox{
-    
+
 	position:fixed;
-    
+
 	max-width: $SideWidth;
 	height:100vh;
-    
+	overflow-y: auto;
+
 	display: flex;
-    flex-grow: 0.8;
-    flex-basis: 0%;
-    
-    flex-direction: column;
+	flex-grow: 0.8;
+	flex-basis: 0%;
+
+	flex-direction: column;
 	top:0;
 	right: -$SideWidth;
-	padding-top: 10px;
+	//padding-top: 10px;
 	background-color: $WhiteColor;
 	box-sizing: border-box;
 	z-index: 60;
 
+	.header{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-direction: row;
+		height: $NavHeight;
+		background-color: rgba($MainColor,0.15);	
 
-    .sideBoxSelect{	
+		img{
+			width: 30px;
+			height: 30px;
+			//opacity: 0.8;
+		}
+		h1{
+			display: inline-block;
+			color: $MainColor;
+			font-size: 14px;
+			font-weight: 400;
+			padding: 10px;
+			letter-spacing: 1px;
+			//opacity: 0.8;
+		}
+	}
 
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+	.sideBoxContent{
 
-        height:60px;
+		position: relative;
 
-        .sideBoxSelectItem{
+		border-left: 1px solid $LineColor;
+		border-bottom: 1px solid $LineColor;
+		padding-top: 20px;
+		padding: 10px;
 
-            width: $SideWidth/2;
-            height: 60px;
-            cursor: pointer;
-
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            border-color: $LineColor;
-            border-width: 1px;
-
-
-            .sideBoxSelectItem-Img{
-                height: 40px;
-                width: auto;
-
-                transition-duration: 0.4s;
-                transition-property: opacity, transform;
-            }
-        }
-
-        .sideBoxSelectItem-on{
-
-            border-style: solid solid none solid;
-
-            .sideBoxSelectItem-Img{
-                transform: scale(1.1);
-                opacity:1;
-            }
-        }
-
-        .sideBoxSelectItem-off{
-
-            border-style: none none solid none;
-
-            .sideBoxSelectItem-Img{
-                transform: scale(1);
-                opacity:0.3;
-            }
-        }
-    }
-
-    .sideBoxContent{
-
-        border-left: 1px solid $LineColor;
-        border-bottom: 1px solid $LineColor;
-        padding-top: 20px;
-        
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-        
-        .searchBar{
-            display: flex;
-            flex:1;
-            
-            justify-content: center;
-            align-items: center;
-            vertical-align: middle;
-            
-            max-height: 70px;
-            
-            margin: 0 10px;
-            padding: 10px 0;
-            
-            border-bottom: 1px solid $LineColor;	
-            
-            .searchTxt{
-                display:inline-block;
-
-                font-size: 16px;
-                height:40px;
-                margin:0 10px;
-                width:200px;
-
-                box-sizing: border-box;
-
-                color:$MainColor;
-                background-color: inherit;
-                border-style:none;
-                border: 1px solid rgba($MainColor,0.5);
-                padding:5px 10px;
-                text-align: center;
-                font-weight: 800;
-
-                transition-duration: 0.4s;
-                transition-property: box-shadow;
-
-                &:focus{
-                    box-shadow: 0 0 5px rgba($MainColor,0.8);
-                }
-            }
-            .searchBtn{
-
-                display: inline-block;
-                width: 40px;
-                height: 40px;
-                padding: 0;
-                margin-left: 10px;
-                background-color: inherit;			
-                border-style: none;						
-                cursor: pointer;
-
-                img{
-                    width: 40px;
-                    height: 40px;
-                    padding: 0;
-                }
-            }
-        }
-        .searchListDiv{
-
-            float:none;
-            display: flex;
-            flex: 1;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            margin-top: 30px;
-            overflow-y: auto;
-
-            color:$DeepFontColor;
-            text-align: center;
-	
-
-            .searchItem{
-                display:inline-block;
-                border-bottom: 1px dashed $LineColor;
-                height: 50px;
-                width:80%;
-                font-size: 14px;
-                text-align: left;
-                a{
-                    text-decoration-line: none;
-                    color: $DeepFontColor;
-                    p{
-                        width:100%;
-                        height:100%;
-                        line-height: 60px;
-
-                        transition-duration: 0.4s;
-                        transition-property: color,margin;
-
-                        &:hover{
-                            color: $MainColor;
-                            margin-left:-5px;
-                        }
-                    }
-                }
-            }
-            .searchNone{
-                font-size: 13px;
-                margin:20px 0;
-                text-align: center;
-            }
-        }
-
-        .bookmark{
-            text-align: center;
-            padding: 20px 40px;
-            margin: 20px 0;
-            overflow-y: auto;
-
-            img{
-                width:40px;
-                height:40px;
-            }
-
-            .bookmarkItem{
-                display:inline-block;
-                border-bottom: 1px dashed $LineColor;
-                min-height: 50px;
-                width:100%;
-                font-size: 14px;
-                text-align: left;
-
-                a{
-                    text-decoration-line: none;
-                    color: $DeepFontColor;
+		display: flex;
+		flex-direction: column;
+		flex-grow: 1;
 
 
-                    p{
-                        width:100%;
-                        height:100%;
-                        line-height: 50px;
+		.content-title{
 
-                        transition-duration: 0.4s;
-                        transition-property: color, margin;
+			$ContentTitleHeight: 20px;
+
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			margin-bottom: 15px;
+			opacity: 0.5;
+
+			img{
+				width: $ContentTitleHeight;
+				height: $ContentTitleHeight;
+			}
+			h1{
+				margin: 0 10px;
+				display: inline-block;
+				font-size: 15px;
+				line-height: $ContentTitleHeight;
+				color: $DeepFontColor;
+				font-weight: 500;
+
+			}
+		}
+		.content-item{
+			display:inline-block;
+			border-bottom: 1px dashed $LineColor;
+			min-height: 50px;
+			width: 100%;
+			font-size: 14px;
+			text-align: left;
+
+			a{
+				text-decoration-line: none;
+				color: $DeepFontColor;
 
 
-                        &:hover{
-                            margin-left:-5px;
-                            color: $MainColor;
-                        }
-                    }
-                }
-            }
-        }
-    }
+				p{
+					width:100%;
+					padding: 0 10px;
+					height:100%;
+					line-height: 50px;
+					box-sizing: border-box;
+
+					transition-duration: 0.4s;
+					transition-property: color, margin;
+
+
+					&:hover{
+						margin-left:-5px;
+						color: $MainColor;
+					}
+				}
+			}
+		}
+		.content-item:last-child{
+			border-style: none;
+		}
+
+		.searchBar{
+			display: flex;
+			flex:1;
+			flex-direction: row;
+
+			justify-content: center;
+			align-items: center;
+			vertical-align: middle;
+
+			border-radius: 20px;
+			border: 1px solid rgba($MainColor,0.5);
+
+			max-height: 70px;
+
+			//border-bottom: 1px solid $LineColor;
+			box-sizing:border-box;
+
+			.left-block{
+				display: flex;
+				flex: 1;
+				//padding-right: 10px;
+				box-sizing: border-box;
+			}
+			.right-block{
+				display: flex;
+				padding-right: 5px;
+				width: 40px;
+			}
+			.searchTxt{
+
+				font-size: 16px;
+				height:40px;
+				//margin:0 20px;
+				//max-width: 300px;
+
+				box-sizing: border-box;
+
+				color:$MainColor;
+				background-color: inherit;
+				border-style:none;
+				padding:5px 0 5px 20px;
+				text-align: left;
+				font-weight: 800;
+
+				transition-duration: 0.4s;
+				//transition-property: box-shadow;
+
+				&:focus{
+					//box-shadow: 0 0 5px rgba($MainColor,0.8);
+				}
+			}
+			.searchBtn{
+
+				display: inline-block;
+				width: 40px;
+				height: 40px;
+				background-color: inherit;			
+				border-style: none;						
+				cursor: pointer;
+				padding: 5px;
+				box-sizing: border-box;
+
+				img{
+					width: 30px;
+					height: 30px;
+					padding: 0;
+				}
+			}
+		}
+
+		.searchListDiv{
+
+			padding: 20px;
+			background-color: rgba($BlackColor,0.1);
+			border-radius: 25px;
+			box-sizing: border-box;
+
+
+			float: none;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			width: 100%;
+			margin: 10px 0;
+			overflow-y: auto;
+
+			color:$DeepFontColor;
+			text-align: center;
+
+			.searchNone{
+				font-size: 13px;
+				margin:20px 0 0 0;
+				text-align: center;
+			}
+		}
+
+		.bookmarkDiv{
+
+			padding: 20px;
+			background-color: rgba($BlackColor,0.1);
+			border-radius: 25px;
+			box-sizing: border-box;
+
+			text-align: center;
+			margin: 10px 0;
+			overflow-y: auto;
+
+		}
+	}
 
 }
 
 .bookmarkBtn{
 
-    display: inline-block;
-    width:50px;
-    height:50px;
-    cursor: pointer;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 
-
-    transition-duration: 0.4s;
-    transition-property: transform;
-
-    &:hover{
-        transform: scale(1.1);
-    }
-
-    img{
-        padding:5px;
-        height:40px;
-        width:40px;		
-    }
-    p{
-        display: inline-block;
-        height:40px;
-        line-height:40px;
-        color: $DeepFontColor;
-        padding: 0 10px;
-    }
-}
-
-.GetRandom{
-
-	background-color: $MainColor;	
-	display: inline-block;
-	width: 60px;
-	height:60px;
-	margin: 80px 0;
+	height: 50px;
 	cursor: pointer;
+	border-radius: 25px;
 
-	box-shadow: 0 0 10px rgba(black,0.2);
+	background-color: rgba($MainColor, 0.2);
 
-	img{
-		width: 30px;
-		height: 30px;
-		padding:15px;
-	}
 
-	transition-property: transform;
 	transition-duration: 0.4s;
+	transition-property: transform;
+
 	&:hover{
 		transform: scale(1.1);
+	}
+
+	img{
+		padding:10px;
+		height:30px;
+		width:30px;		
+	}
+	p{
+		display: inline-block;
+		height:40px;
+		line-height:40px;
+		color: $MainColor;
+		padding-right: 20px;
+	}
+}
+.bookmarkBtn-off{	
+	background-color: rgba($BlackColor, 0.15);
+	p{
+		color: $DeepFontColor;
+	}
+}
+.RandomList{
+	margin: 80px 0;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+
+	.RandomItem{
+
+		background-color: $LightColor;	
+		display: inline-block;
+		width: 200px;
+		height: 120px;
+		cursor: pointer;
+		margin: 10px;
+		padding: 15px;
+		box-sizing: border-box;
+		border-radius: 15px;
+
+		box-shadow: 0 0 10px rgba(black,0.2);
+
+		img{
+			width: 30px;
+			height: 30px;
+			padding:15px;
+		}
+		.title-contain{
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 50px;
+		}
+		.title{
+			color: $DeepFontColor;
+			font-size: 20px;
+			margin-bottom: 15px;
+			word-wrap: break-word;
+		}
+		.content{
+			color: $DeepFontColor;
+			font-size: 15px;
+		}
+		.tag{
+			opacity: 0.5;
+		}
+		a{
+			text-decoration-line: none !important;
+			display: inline-block;
+			width: 100%;
+			height: 100%;
+		}
+
+		transition-property: transform;
+		transition-duration: 0.4s;
+		&:hover{
+			transform: scale(1.05);
+		}
 	}
 }
 
@@ -521,17 +567,20 @@ body {
 
 $TagColor: #666;
 .tag{
-    
-    display: inline;
+
+	display: inline-block;
 	font-size: 13px;
-    letter-spacing: 1px;
-    padding: 8px 12px;
-    color: $TagColor;
-    border: rgba($TagColor,0.3) 1px solid;
-    border-radius: 5px;
-    
-    
-    
+	letter-spacing: 1px;
+	padding: 0 20px;
+	height: 40px;
+	line-height: 40px;
+
+	color: $TagColor;
+	background-color: rgba($TagColor,0.1);
+	border-radius: 20px;
+
+
+
 }
 
 .text{
@@ -578,14 +627,10 @@ hide, .hide{
 		}
 	}
 
-	.GetRandom{
-		width:80px;
-		height:80px;
-
-		img{
-			width:100%;
-			height:100%;
-			box-sizing: border-box;
+	.RandomList{
+		flex-direction: column;
+		.RandomItem{
+			width:80vw;
 		}
 	}
 }

@@ -64,7 +64,8 @@ var vm = new Vue({
 		Side		: false,
 		SearchList	: [],
 		BookMark	: Utility.Dictionary.Create(),
-		SearchString:""
+		SearchString:"",
+		RandomSroty	:[]
 	},
 	computed:{
 		GetThisStory: function(){
@@ -100,6 +101,11 @@ var vm = new Vue({
 		SideToggle: function(){		
 			this.Side = !this.Side;
 			SideBox(this.Side);
+		},
+		FreshRandomStory: function(){
+			this.RandomSroty = [];
+			this.RandomSroty.push(Utility.Random.Range(0, this.AllStory.length));
+			this.RandomSroty.push(Utility.Random.Range(0, this.AllStory.length));
 		}
 	}
 });
@@ -108,9 +114,13 @@ $(function(){
 	
 	$("#app").css("display","block");
 	
-	GetData();
+	GetData();	
+	vm.FreshRandomStory();
 
-	$(window).bind("hashchange",function(){FadeChange(ParseUrl());});
+	$(window).bind("hashchange",function(){
+		vm.FreshRandomStory();
+		FadeChange(ParseUrl());
+	});
 	
 	$(".searchTxt").bind("keypress",function(e){
 		if (e.keyCode == 13) {
@@ -236,8 +246,8 @@ function SideBox(b){
         $(".sideBox").animate({"right":"-350px"},300,function(){
             isSiding = false;
         });
-        $("#app").animate({marginLeft:"0px"},400);
-        $(".nav").animate({paddingRight:"0px"},400);
+        $("#app").animate({marginLeft:"0px"},300);
+        $(".nav").animate({paddingRight:"0px"},300);
         
     }
 }
@@ -248,11 +258,11 @@ function Black(b){
 	if (isSiding) return;
 	
 	if (b){
-		$(".bigBLACK").show().animate({"opacity":"0.7"},400);
+		$(".bigBLACK").show().animate({"opacity":"0.6"},300);
 	}
 	else{
 		vm.Side = false;
-		$(".bigBLACK").animate({"opacity":"0"},400,function(){
+		$(".bigBLACK").animate({"opacity":"0"},300,function(){
 			$(".bigBLACK").hide();
 		});
 	}

@@ -62,8 +62,7 @@ body {
   top: 0;
   width: 100%;
   height: 70px;
-  background-color: rgba(255, 255, 255, 0.9);
-  box-shadow: 0 0 30px #FFFFFF;
+  background-color: rgba(239, 239, 239, 0.8);
   box-sizing: border-box;
   padding: 0 0px;
   z-index: 50; }
@@ -118,8 +117,9 @@ body {
   width: 200%;
   height: 200%;
   cursor: pointer;
-  background-color: #FFFFFF;
-  opacity: 0; }
+  background-color: #5f6164;
+  opacity: 0;
+  z-index: 55; }
 
 .read {
   padding: 0 50px;
@@ -155,191 +155,225 @@ body {
   position: fixed;
   max-width: 300px;
   height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-grow: 0.8;
   flex-basis: 0%;
   flex-direction: column;
   top: 0;
   right: -300px;
-  padding-top: 10px;
   background-color: #FFFFFF;
   box-sizing: border-box;
   z-index: 60; }
-  .sideBox .sideBoxSelect {
+  .sideBox .header {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
-    height: 60px; }
-    .sideBox .sideBoxSelect .sideBoxSelectItem {
-      width: 150px;
-      height: 60px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-color: rgba(95, 97, 100, 0.1);
-      border-width: 1px; }
-      .sideBox .sideBoxSelect .sideBoxSelectItem .sideBoxSelectItem-Img {
-        height: 40px;
-        width: auto;
-        transition-duration: 0.4s;
-        transition-property: opacity, transform; }
-    .sideBox .sideBoxSelect .sideBoxSelectItem-on {
-      border-style: solid solid none solid; }
-      .sideBox .sideBoxSelect .sideBoxSelectItem-on .sideBoxSelectItem-Img {
-        transform: scale(1.1);
-        opacity: 1; }
-    .sideBox .sideBoxSelect .sideBoxSelectItem-off {
-      border-style: none none solid none; }
-      .sideBox .sideBoxSelect .sideBoxSelectItem-off .sideBoxSelectItem-Img {
-        transform: scale(1);
-        opacity: 0.3; }
+    flex-direction: row;
+    height: 70px;
+    background-color: rgba(76, 158, 217, 0.15); }
+    .sideBox .header img {
+      width: 30px;
+      height: 30px; }
+    .sideBox .header h1 {
+      display: inline-block;
+      color: #4c9ed9;
+      font-size: 14px;
+      font-weight: 400;
+      padding: 10px;
+      letter-spacing: 1px; }
   .sideBox .sideBoxContent {
+    position: relative;
     border-left: 1px solid rgba(95, 97, 100, 0.1);
     border-bottom: 1px solid rgba(95, 97, 100, 0.1);
     padding-top: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     flex-grow: 1; }
+    .sideBox .sideBoxContent .content-title {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      margin-bottom: 15px;
+      opacity: 0.5; }
+      .sideBox .sideBoxContent .content-title img {
+        width: 20px;
+        height: 20px; }
+      .sideBox .sideBoxContent .content-title h1 {
+        margin: 0 10px;
+        display: inline-block;
+        font-size: 15px;
+        line-height: 20px;
+        color: #52606a;
+        font-weight: 500; }
+    .sideBox .sideBoxContent .content-item {
+      display: inline-block;
+      border-bottom: 1px dashed rgba(95, 97, 100, 0.1);
+      min-height: 50px;
+      width: 100%;
+      font-size: 14px;
+      text-align: left; }
+      .sideBox .sideBoxContent .content-item a {
+        text-decoration-line: none;
+        color: #52606a; }
+        .sideBox .sideBoxContent .content-item a p {
+          width: 100%;
+          padding: 0 10px;
+          height: 100%;
+          line-height: 50px;
+          box-sizing: border-box;
+          transition-duration: 0.4s;
+          transition-property: color, margin; }
+          .sideBox .sideBoxContent .content-item a p:hover {
+            margin-left: -5px;
+            color: #4c9ed9; }
+    .sideBox .sideBoxContent .content-item:last-child {
+      border-style: none; }
     .sideBox .sideBoxContent .searchBar {
       display: flex;
       flex: 1;
+      flex-direction: row;
       justify-content: center;
       align-items: center;
       vertical-align: middle;
+      border-radius: 20px;
+      border: 1px solid rgba(76, 158, 217, 0.5);
       max-height: 70px;
-      margin: 0 10px;
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(95, 97, 100, 0.1); }
+      box-sizing: border-box; }
+      .sideBox .sideBoxContent .searchBar .left-block {
+        display: flex;
+        flex: 1;
+        box-sizing: border-box; }
+      .sideBox .sideBoxContent .searchBar .right-block {
+        display: flex;
+        padding-right: 5px;
+        width: 40px; }
       .sideBox .sideBoxContent .searchBar .searchTxt {
-        display: inline-block;
         font-size: 16px;
         height: 40px;
-        margin: 0 10px;
-        width: 200px;
         box-sizing: border-box;
         color: #4c9ed9;
         background-color: inherit;
         border-style: none;
-        border: 1px solid rgba(76, 158, 217, 0.5);
-        padding: 5px 10px;
-        text-align: center;
+        padding: 5px 0 5px 20px;
+        text-align: left;
         font-weight: 800;
-        transition-duration: 0.4s;
-        transition-property: box-shadow; }
-        .sideBox .sideBoxContent .searchBar .searchTxt:focus {
-          box-shadow: 0 0 5px rgba(76, 158, 217, 0.8); }
+        transition-duration: 0.4s; }
       .sideBox .sideBoxContent .searchBar .searchBtn {
         display: inline-block;
         width: 40px;
         height: 40px;
-        padding: 0;
-        margin-left: 10px;
         background-color: inherit;
         border-style: none;
-        cursor: pointer; }
+        cursor: pointer;
+        padding: 5px;
+        box-sizing: border-box; }
         .sideBox .sideBoxContent .searchBar .searchBtn img {
-          width: 40px;
-          height: 40px;
+          width: 30px;
+          height: 30px;
           padding: 0; }
     .sideBox .sideBoxContent .searchListDiv {
+      padding: 20px;
+      background-color: rgba(95, 97, 100, 0.1);
+      border-radius: 25px;
+      box-sizing: border-box;
       float: none;
       display: flex;
-      flex: 1;
       flex-direction: column;
       align-items: center;
       width: 100%;
-      margin-top: 30px;
+      margin: 10px 0;
       overflow-y: auto;
       color: #52606a;
       text-align: center; }
-      .sideBox .sideBoxContent .searchListDiv .searchItem {
-        display: inline-block;
-        border-bottom: 1px dashed rgba(95, 97, 100, 0.1);
-        height: 50px;
-        width: 80%;
-        font-size: 14px;
-        text-align: left; }
-        .sideBox .sideBoxContent .searchListDiv .searchItem a {
-          text-decoration-line: none;
-          color: #52606a; }
-          .sideBox .sideBoxContent .searchListDiv .searchItem a p {
-            width: 100%;
-            height: 100%;
-            line-height: 60px;
-            transition-duration: 0.4s;
-            transition-property: color,margin; }
-            .sideBox .sideBoxContent .searchListDiv .searchItem a p:hover {
-              color: #4c9ed9;
-              margin-left: -5px; }
       .sideBox .sideBoxContent .searchListDiv .searchNone {
         font-size: 13px;
-        margin: 20px 0;
+        margin: 20px 0 0 0;
         text-align: center; }
-    .sideBox .sideBoxContent .bookmark {
+    .sideBox .sideBoxContent .bookmarkDiv {
+      padding: 20px;
+      background-color: rgba(95, 97, 100, 0.1);
+      border-radius: 25px;
+      box-sizing: border-box;
       text-align: center;
-      padding: 20px 40px;
-      margin: 20px 0;
+      margin: 10px 0;
       overflow-y: auto; }
-      .sideBox .sideBoxContent .bookmark img {
-        width: 40px;
-        height: 40px; }
-      .sideBox .sideBoxContent .bookmark .bookmarkItem {
-        display: inline-block;
-        border-bottom: 1px dashed rgba(95, 97, 100, 0.1);
-        min-height: 50px;
-        width: 100%;
-        font-size: 14px;
-        text-align: left; }
-        .sideBox .sideBoxContent .bookmark .bookmarkItem a {
-          text-decoration-line: none;
-          color: #52606a; }
-          .sideBox .sideBoxContent .bookmark .bookmarkItem a p {
-            width: 100%;
-            height: 100%;
-            line-height: 50px;
-            transition-duration: 0.4s;
-            transition-property: color, margin; }
-            .sideBox .sideBoxContent .bookmark .bookmarkItem a p:hover {
-              margin-left: -5px;
-              color: #4c9ed9; }
 
 .bookmarkBtn {
-  display: inline-block;
-  width: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   height: 50px;
   cursor: pointer;
+  border-radius: 25px;
+  background-color: rgba(76, 158, 217, 0.2);
   transition-duration: 0.4s;
   transition-property: transform; }
   .bookmarkBtn:hover {
     transform: scale(1.1); }
   .bookmarkBtn img {
-    padding: 5px;
-    height: 40px;
-    width: 40px; }
+    padding: 10px;
+    height: 30px;
+    width: 30px; }
   .bookmarkBtn p {
     display: inline-block;
     height: 40px;
     line-height: 40px;
-    color: #52606a;
-    padding: 0 10px; }
+    color: #4c9ed9;
+    padding-right: 20px; }
 
-.GetRandom {
-  background-color: #4c9ed9;
-  display: inline-block;
-  width: 60px;
-  height: 60px;
+.bookmarkBtn-off {
+  background-color: rgba(95, 97, 100, 0.15); }
+  .bookmarkBtn-off p {
+    color: #52606a; }
+
+.RandomList {
   margin: 80px 0;
-  cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  transition-property: transform;
-  transition-duration: 0.4s; }
-  .GetRandom img {
-    width: 30px;
-    height: 30px;
-    padding: 15px; }
-  .GetRandom:hover {
-    transform: scale(1.1); }
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; }
+  .RandomList .RandomItem {
+    background-color: #EFEFEF;
+    display: inline-block;
+    width: 200px;
+    height: 120px;
+    cursor: pointer;
+    margin: 10px;
+    padding: 15px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition-property: transform;
+    transition-duration: 0.4s; }
+    .RandomList .RandomItem img {
+      width: 30px;
+      height: 30px;
+      padding: 15px; }
+    .RandomList .RandomItem .title-contain {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 50px; }
+    .RandomList .RandomItem .title {
+      color: #52606a;
+      font-size: 20px;
+      margin-bottom: 15px;
+      word-wrap: break-word; }
+    .RandomList .RandomItem .content {
+      color: #52606a;
+      font-size: 15px; }
+    .RandomList .RandomItem .tag {
+      opacity: 0.5; }
+    .RandomList .RandomItem a {
+      text-decoration-line: none !important;
+      display: inline-block;
+      width: 100%;
+      height: 100%; }
+    .RandomList .RandomItem:hover {
+      transform: scale(1.05); }
 
 .bottomDiv {
   border-top: 1px solid rgba(95, 97, 100, 0.1); }
@@ -389,13 +423,15 @@ body {
   border-radius: 10000px; }
 
 .tag {
-  display: inline;
+  display: inline-block;
   font-size: 13px;
   letter-spacing: 1px;
-  padding: 8px 12px;
+  padding: 0 20px;
+  height: 40px;
+  line-height: 40px;
   color: #666;
-  border: rgba(102, 102, 102, 0.3) 1px solid;
-  border-radius: 5px; }
+  background-color: rgba(102, 102, 102, 0.1);
+  border-radius: 20px; }
 
 .text-right {
   text-align: right; }
@@ -429,12 +465,9 @@ hide, .hide {
         line-height: 35px;
         border-style: none; }
 
-  .GetRandom {
-    width: 80px;
-    height: 80px; }
-    .GetRandom img {
-      width: 100%;
-      height: 100%;
-      box-sizing: border-box; } }
+  .RandomList {
+    flex-direction: column; }
+    .RandomList .RandomItem {
+      width: 80vw; } }
 
 /*# sourceMappingURL=main.css.map */
