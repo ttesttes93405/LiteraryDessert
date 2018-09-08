@@ -125,7 +125,7 @@ a{
 
 
 .bigBLACK{
-	
+
 	position: fixed;
 	left:-50%;
 	top:-50%;
@@ -135,10 +135,10 @@ a{
 	background-color: $BlackColor;
 	opacity: 0.5;
 	z-index: 55;
-	
+
 	transition-property: opacity;
 	transition-duration: 1s;
-	
+
 	&.bigBLACK-off{
 		opacity: 0;
 		display: none;
@@ -192,6 +192,9 @@ a{
 	position:fixed;
 
 	max-width: $SideWidth;
+	min-width: $SideWidth;
+	width: $SideWidth;
+
 	height:100vh;
 	overflow-y: auto;
 
@@ -704,8 +707,10 @@ hide, .hide{
 
 
 	.sideBox{
-		
+
 		max-width: $SideWidth-s;
+		min-width: $SideWidth-s;
+		width: $SideWidth-s;
 		right: 0;
 
 		&.sideBox-off{

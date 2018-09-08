@@ -173,6 +173,8 @@ a {
 .sideBox {
   position: fixed;
   max-width: 400px;
+  min-width: 400px;
+  width: 400px;
   height: 100vh;
   overflow-y: auto;
   display: flex;
@@ -523,6 +525,8 @@ hide, .hide {
 
   .sideBox {
     max-width: 300px;
+    min-width: 300px;
+    width: 300px;
     right: 0; }
     .sideBox.sideBox-off {
       right: -300px; } }
