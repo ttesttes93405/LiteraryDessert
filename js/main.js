@@ -1,4 +1,32 @@
 
+//載入完成進入點
+document.addEventListener("DOMContentLoaded", function(){
+
+
+	$(".searchTxt").bind("keypress",function(e){
+		if (e.keyCode == 13) {
+			vm.SearchFilter();
+			$(".searchTxt").blur();
+			return false;
+		}
+	});
+
+	$(".searchTxt").bind("change",function(){
+		vm.SearchFilter();
+		$(".searchTxt").blur();
+	});	
+
+	$(".searchBtn").bind("click",function(){
+		vm.SearchFilter();
+		$(".searchTxt").blur();
+	});
+
+
+	vm.Enter();
+
+}); 
+
+
 //------------------------------
 //工具
 var Utility = {
@@ -63,6 +91,8 @@ var vm = new Vue({
 		NowSide		: 0,             //側邊欄分頁
 		Side		: false,
 		Black		: false,
+		ShowNavTitle: false,
+		isScrolling	: false,
 		SearchList	: [],
 		BookMark	: Utility.Dictionary.Create(),
 		SearchString:"",
@@ -76,6 +106,37 @@ var vm = new Vue({
 		}
 	},
 	methods:{
+
+		//進入點
+		Enter: function(){
+
+			this.GetData();	
+
+			var Inx = this.ParseUrl();
+			if(Inx >= 0) { 
+				this.StoryInx = Inx; 
+				this.NowDiv = 0;
+			}
+
+			window.addEventListener("scroll",this.handleScroll);
+			window.addEventListener("hashchange", this.HashCheck);
+
+			this.FreshRandomStory();
+
+			if(localStorage["BookMark"] == undefined){
+				this.BookMark.List = [];
+			}
+			else{
+				this.BookMark.List = localStorage["BookMark"].split(",");
+			}
+
+			//書籤紀錄
+			this.BookMark.CleanEmpty();
+
+
+		},
+
+		//篩選出故事清單並顯示
 		SearchFilter: function(){
 			var Arr = [];
 			if (this.SearchString != ""){
@@ -90,174 +151,138 @@ var vm = new Vue({
 			}
 			this.ShowSearchList(Arr);
 		},
+
+		//顯示搜尋故事清單(清單)
 		ShowSearchList: function(list){
 			this.SearchList = list;
 		},
+
+		//綁定scroll事件
+		handleScroll: function(e){
+			this.ShowNavTitle = (e.pageY > 220);
+		},
+
+		//綁定hashchange事件
+		HashCheck: function(){
+			this.ChangeInx(this.ParseUrl());	
+		},
+
+		//取得Index對應的hash
 		GetHash: function(inx){
 			return "#inx-" + inx;
 		},
-		SearchItemClick: function(){
-			SideBox(false);
-		},
-		SideToggle: function(){		
-			this.Side = !this.Side;
-			SideBox(this.Side);
-		},
+
+		//取得故事的大綱
 		GetSummary: function(index){
 			var Content = this.AllStory[index].content;
 			return Content.substring(0, 80).replace(/<br>|<br|<b|</g,'\n');
 		},
+
+		//刷新隨機故事
 		FreshRandomStory: function(){
 			this.RandomSroty = [];
-			this.RandomSroty.push(Utility.Random.Range(0, this.AllStory.length));
-			this.RandomSroty.push(Utility.Random.Range(0, this.AllStory.length));
-			this.RandomSroty.push(Utility.Random.Range(0, this.AllStory.length));
-		}
-	}
-});
-
-$(function(){
-
-	$("#app").css("display","block");
-
-	GetData();	
-	vm.FreshRandomStory();
-
-	$(window).bind("hashchange",function(){
-		ChangeInx(ParseUrl());
-	});
-
-	$(".searchTxt").bind("keypress",function(e){
-		if (e.keyCode == 13) {
-			vm.SearchFilter();
-			$(".searchTxt").blur();
-			return false;
-		}
-	});
-	$(".searchTxt").bind("change",function(){
-		vm.SearchFilter();
-		$(".searchTxt").blur();
-	});	
-	$(".searchBtn").bind("click",function(){
-		vm.SearchFilter();
-		$(".searchTxt").blur();
-	});
-
-	var Inx = ParseUrl();
-	if(Inx >= 0) { 
-		vm.StoryInx = Inx; 
-		vm.NowDiv = 0;
-	}
-
-	Black(false);
-
-	if(localStorage["BookMark"] == "undefined"){
-		localStorage["BookMark"] = "";
-	};
-
-	//書籤紀錄
-	vm.BookMark.List = localStorage["BookMark"].split(",");
-	vm.BookMark.CleanEmpty();
-
-});
-
-//------------------------------
-//顯示與資料
-
-//隨機抽故事
-function GetRandomStory(){
-	ChangeHash(Utility.Random.Range(0, vm.AllStory.length));
-	vm.NowDiv = 0;
-}
-
-//開關書籤
-function ToggleBookMark(){;
-						  vm.BookMark.Toggle(vm.StoryInx);
-						 }
-
-
-//------------------------------
-//資料
-
-//取得JSON
-function GetData(){
-
-	$.getJSON({
-		url:"data.json",  
-		success:
-		function(data) {			
-			vm.AllStory = data.story;
-		},
-		async:false
-	});
-}
-
-//解Hash
-function ParseUrl(){
-	var url_hash = location.hash;
-
-	if (url_hash.indexOf("#") != -1){
-
-		if (url_hash != "#"){			
-			url_hash = url_hash.replace("#","");
-			var Nm = url_hash;
-
-			if(Nm.substr(0,4) == "inx-"){
-				Nm = Nm.replace("inx-","");
-				if (Nm == "random"){
-					Nm = Range(0,vm.AllStory.length);
+			for(var i=0;i<3;i++){
+				var st = Utility.Random.Range(0, this.AllStory.length);
+				if (this.AllStory[st].title != ""){
+					this.RandomSroty.push(st);
 				}
-				return Nm;
 			}
-		}		
+		},
+
+		//改變故事Index
+		ChangeInx: function(inx){
+			if(inx < 0 ) return;
+			if(this.AllStory[inx].title == "") return;
+
+			$(".container").css("opacity", 1).animate({opacity:0}, 300,function(){
+
+				vm.FreshRandomStory();
+				vm.StoryInx = inx;   
+				vm.NowDiv = 0;
+
+				$(".container").css("opacity", 0).animate({opacity:1}, 800);
+				vm.Topit();
+
+			});
+		},
+
+		//解Hash
+		ParseUrl: function(){
+			var url_hash = location.hash;
+
+			if (url_hash.indexOf("#") != -1){
+
+				if (url_hash != "#"){			
+					url_hash = url_hash.replace("#","");
+					var Nm = url_hash;
+
+					if(Nm.substr(0,4) == "inx-"){
+						Nm = Nm.replace("inx-","");
+						if (Nm == "random"){
+							Nm = Range(0,this.AllStory.length);
+						}
+						return Nm;
+					}
+				}		
+			}
+			else{
+				location.hash = "#";
+			}	
+			return -1;	
+		},
+
+		//開關側邊攔
+		SideBox: function(b){
+			this.Black = b;
+			this.Side = b;
+		},
+
+		//側邊攔反轉開關
+		SideToggle: function(){		
+			this.Side = !this.Side;
+			this.SideBox(this.Side);
+		},
+
+		//開關書籤
+		ToggleBookMark: function (){
+			this.BookMark.Toggle(this.StoryInx);
+		},
+
+		//取得JSON
+		GetData: function(){
+
+			$.getJSON({
+				url:"data.json",  
+				success:
+				function(data) {			
+					vm.AllStory = data.story;
+				},
+				async:false
+			});
+		},
+
+		//隨機抽故事
+		GetRandomStory: function(){
+			ChangeHash(Utility.Random.Range(0, vm.AllStory.length));
+			vm.NowDiv = 0;
+		},
+
+		//改變Hash
+		ChangeHash: function(inx){
+			location.hash = "inx-" + inx;
+		},
+
+		//回頂部
+		Topit: function (){
+
+			if (!this.isScrolling){
+				this.isScrolling = true;
+				$("html,body").animate({scrollTop:0}, 300, function(){
+					vm.isScrolling = false;
+				});
+			}
+		}
+
 	}
-	else{
-		location.hash = "#";
-	}	
-	return -1;	
-}
+});
 
-//改變Hash
-function ChangeHash(inx){
-	location.hash = "inx-" + inx;
-}
-
-
-//------------------------------
-//顯示
-
-//開關側邊攔
-function SideBox(b){
-	vm.Black = b;
-	vm.Side = b;
-	
-}
-
-function ChangeInx(inx){
-	if(inx < 0 ) return;
-	if(vm.AllStory[inx].title == "") return;
-
-
-	$(".container").css("opacity", 1).animate({opacity:0}, 300,function(){
-
-		vm.FreshRandomStory();
-		vm.StoryInx = inx;   
-		vm.NowDiv = 0;
-
-		$(".container").css("opacity", 0).animate({opacity:1}, 800);
-		Topit();
-
-	});
-}
-
-
-//回頂部
-var isScrolling = false;
-function Topit(){
-	if (!isScrolling){
-		isScrolling = true;
-		$("html,body").animate({scrollTop:0}, 300, function(){
-			isScrolling = false;
-		});
-	}
-}

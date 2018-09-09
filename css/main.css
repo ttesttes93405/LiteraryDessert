@@ -62,7 +62,6 @@ a {
 .nav {
   display: inline-flex;
   flex-direction: row;
-  align-content: center;
   justify-content: center;
   align-items: center;
   vertical-align: middle;
@@ -71,10 +70,11 @@ a {
   top: 0;
   width: 100%;
   height: 70px;
-  background-color: rgba(248, 248, 248, 0.8);
+  background-color: rgba(240, 240, 240, 0.95);
   box-sizing: border-box;
   padding: 0 0px;
-  z-index: 50; }
+  z-index: 50;
+  overflow: hidden; }
   .nav img {
     width: 30px;
     height: auto;
@@ -88,18 +88,42 @@ a {
     display: inline;
     cursor: pointer; }
   .nav .nav-left {
+    display: flex;
+    flex-direction: column;
     flex-grow: 1;
+    align-items: center;
     justify-content: flex-start;
     text-align: left;
     padding-left: 10px;
-    opacity: 0.8; }
+    height: 70px;
+    opacity: 0.9;
+    margin-top: -140px;
+    transition-property: margin-top;
+    transition-duration: 0.2s; }
+    .nav .nav-left.story-title-off {
+      margin-top: 0; }
+    .nav .nav-left .nav-title-item {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      line-height: 70px;
+      height: 70px;
+      width: 100%;
+      max-width: 100%; }
+    .nav .nav-left .story-title {
+      font-size: 20px;
+      padding-left: 50px;
+      letter-spacing: 1px;
+      font-weight: 700; }
   .nav .nav-right {
     flex-grow: 0;
     width: 70px;
     justify-content: center;
-    opacity: 0.8; }
+    opacity: 0.9; }
   .nav .logo-title {
-    letter-spacing: 1px; }
+    letter-spacing: 1px;
+    line-height: 70px;
+    height: 70px; }
 
 .container {
   display: inline-block;
@@ -222,7 +246,7 @@ a {
       flex-direction: row;
       justify-content: center;
       margin-bottom: 15px;
-      opacity: 0.5; }
+      opacity: 0.9; }
       .sideBox .sideBoxContent .content-title img {
         width: 20px;
         height: 20px; }
@@ -259,8 +283,7 @@ a {
       border-style: none; }
     .sideBox .sideBoxContent .content-container {
       padding: 20px 0;
-      background-color: #F8F8F8;
-      border: 1px solid rgba(95, 97, 100, 0.08);
+      background-color: #F0F0F0;
       border-radius: 25px;
       box-sizing: border-box; }
     .sideBox .sideBoxContent .searchBar {
@@ -371,7 +394,7 @@ a {
     justify-content: center;
     align-items: center; }
     .RandomDiv .RandomList .RandomItem {
-      background-color: #F8F8F8;
+      background-color: #F0F0F0;
       display: inline-block;
       width: 300px;
       height: 190px;
@@ -380,19 +403,23 @@ a {
       padding: 15px;
       box-sizing: border-box;
       border-radius: 15px;
-      border: 1px solid rgba(95, 97, 100, 0.08);
       overflow: hidden;
       transition-property: transform;
       transition-duration: 0.4s; }
-      .RandomDiv .RandomList .RandomItem img {
-        width: 30px;
-        height: 30px;
-        padding: 15px; }
-      .RandomDiv .RandomList .RandomItem .title-contain {
+      .RandomDiv .RandomList .RandomItem:hover {
+        transform: scale(1.03); }
+        .RandomDiv .RandomList .RandomItem:hover .title-container {
+          height: 100px;
+          min-height: 100px; }
+      .RandomDiv .RandomList .RandomItem .title-container {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 50px; }
+        height: 190px;
+        min-height: 190px;
+        transition-property: height;
+        transition-duration: 0.5s; }
       .RandomDiv .RandomList .RandomItem .title {
         color: #52606a;
         font-size: 20px;
@@ -418,14 +445,12 @@ a {
         top: -40px;
         height: 40px;
         width: 100%;
-        background: -moz-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0.9) 100%);
+        background: -moz-linear-gradient(top, rgba(240, 240, 240, 0) 0%, rgba(240, 240, 240, 0.9) 100%);
         /* FF3.6-15 */
-        background: -webkit-linear-gradient(top, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0.9) 100%);
+        background: -webkit-linear-gradient(top, rgba(240, 240, 240, 0) 0%, rgba(240, 240, 240, 0.9) 100%);
         /* Chrome10-25,Safari5.1-6 */
-        background: linear-gradient(to bottom, rgba(248, 248, 248, 0) 0%, rgba(248, 248, 248, 0.9) 100%);
+        background: linear-gradient(to bottom, rgba(240, 240, 240, 0) 0%, rgba(240, 240, 240, 0.9) 100%);
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ }
-      .RandomDiv .RandomList .RandomItem:hover {
-        transform: scale(1.03); }
 
 .bottomDiv {
   border-top: 1px solid rgba(95, 97, 100, 0.1); }

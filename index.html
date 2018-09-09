@@ -29,14 +29,17 @@
 
 	<body>
 
-		<div id="app" style="display:none"  v-bind:class="{'sideBox-off':!Side}">
+		<div id="app" v-bind:class="{'sideBox-off':!Side}">
 
 			<!--導航欄-->
 			<div class="nav">
 
-				<div class="nav-left" v-on:click="Topit()">
-					<img src="pic/Icon_Blue.svg"/>
-					<p class="logo-title">Literary Dessert</p>
+				<div class="nav-left" v-on:click="Topit()" v-bind:class="{'story-title-off': !ShowNavTitle}">
+					<div class="nav-title-item">
+						<img src="pic/Icon_Blue.svg"/>
+						<p class="logo-title">Literary Dessert</p>
+					</div>
+					<p class="nav-title-item story-title" v-if="NowDiv == 0">{{AllStory[StoryInx].title}}</p>
 				</div>
 				<div class="nav-right">
 					<img src="pic/Menu.svg" v-on:click="SideToggle()"/>
@@ -78,17 +81,18 @@
 
 				<!--抽故事-->
 				<div class="RandomDiv">
-				
-					<h1 class="div-title">其他故事</h1>
-					
+
+					<h1 class="div-title"></h1>
+
 					<div class="RandomList">
 						<div  v-for="(item,index) in RandomSroty" 
 							 class="RandomItem" title="抽一個故事">
 							<a v-bind:href="GetHash(item)">
-								<div class="title-contain">
+								<div class="title-container">
 									<h1 class="title">{{AllStory[item].title}}</h1>
+									<p class="tag">Type_{{AllStory[item].type}}</p>
 								</div>
-								<p class="tag">Type_{{AllStory[item].type}}</p>
+
 								<p class="content">{{GetSummary(RandomSroty[index])}}</p>
 								<div class="gradient"></div>
 							</a>
@@ -168,7 +172,7 @@
 						</div>
 
 
-						<div v-for="item in SearchList" class="content-item" v-on:click="SearchItemClick">
+						<div v-for="item in SearchList" class="content-item" v-on:click="SideBox(false);">
 							<a v-bind:href="GetHash(item)">
 								<p>{{AllStory[item].title}}</p>
 							</a>
