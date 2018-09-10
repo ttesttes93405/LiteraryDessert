@@ -52,7 +52,7 @@ var Utility = {
 		},
 		Remove: function(item) {
 			if (this.Has(item)) { 
-				this.List = this.List.filter(i => (i !== item));
+				this.List = this.List.filter(function(i){ return (i !== item)});
 				this.Save();
 			}
 		},
