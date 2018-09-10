@@ -20,6 +20,7 @@ body {
 	-webkit-user-select: none;
 	user-select: none;
 }
+
 #app{
 	text-align: center;
 	outline: none;
@@ -33,7 +34,6 @@ body {
 		margin-left: 0;
 	}
 }
-
 
 a{
 	text-decoration-line: none !important;
@@ -66,6 +66,7 @@ a{
 		display: inline;
 		cursor: pointer;
 		padding: 10px;
+		margin: 10px;
 		vertical-align: middle;
 	}
 	p{
@@ -77,41 +78,55 @@ a{
 
 	.nav-left{
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		flex-grow: 1;
 		align-items: center;
 		justify-content: flex-start;
 		text-align: left;
-		padding-left: 10px;
 		height: $NavHeight;
 
 		opacity: 0.9;
 
-		margin-top: -140px;
-		transition-property: margin-top;
-		transition-duration: 0.2s;
-		
-		&.story-title-off{
-			margin-top: 0;
-		}
-		
-		.nav-title-item{
+
+
+		.nav-title{
+
 			display: flex;
-			align-items: center;
-			justify-content: flex-start;
-			line-height: $NavHeight;
-			height: $NavHeight;
-			width: 100%;
-			max-width: 100%;
-		}
-		.story-title{
-			font-size: 20px;
-			padding-left: 50px;
-			letter-spacing: 1px;
-			font-weight: 700;
-		}
+			flex-direction: column;
+			align-items: flex-start;
 
+			margin-top: -70px;
+			transition-property: margin-top;
+			transition-duration: 0.2s;
 
+			&.story-title-off{
+				margin-top: 70px;
+			}
+
+			.nav-title-item{
+				display: flex;
+				align-items: center;
+				justify-content: flex-start;
+				line-height: $NavHeight;
+				height: $NavHeight;
+				min-height:  $NavHeight;
+				max-height:  $NavHeight;
+				width: 100%;
+				max-width: 100%;
+				padding-left: 20px;
+			}
+			.story-title{
+				font-size: 18px;
+				letter-spacing: 2px;
+				font-weight: 500;
+			}
+			.logo-title{
+				letter-spacing: 1px;
+				line-height:  $NavHeight;
+				height: $NavHeight;
+			}
+
+		}
 	}
 	.nav-right{
 		flex-grow: 0;
@@ -119,21 +134,16 @@ a{
 		justify-content: center;
 		opacity: 0.9;
 	}
-	.logo-title{
-		letter-spacing: 1px;
-		line-height:  $NavHeight;
-		height: $NavHeight;
-	}
 
 
 
 }
+
 .container{
 	display: inline-block;
 	width: 700px;
 	padding: 70px 0;
 }
-
 
 .read-bottom{
 
@@ -144,7 +154,7 @@ a{
 	align-items: center;
 	vertical-align: middle;
 	width: 100%;
-	height: 100px;
+	height: 180px;
 
 	.read-bottom-left{
 
@@ -158,7 +168,6 @@ a{
 	}
 
 }
-
 
 .bigBLACK{
 
@@ -530,15 +539,13 @@ a{
 			width: 300px;
 			height: 190px;
 			cursor: pointer;
-			margin: 10px;
+			margin: 20px 10px;
 			padding: 15px;
 			box-sizing: border-box;
 			border-radius: 15px;
-
-			//border: 1px solid rgba($BlackColor,0.08);
 			overflow: hidden;
-			//box-shadow: 0 0 10px rgba(black,0.2);
-
+			
+			box-shadow: 0 0 16px rgba($BlackColor, 0.25);
 
 			transition-property: transform;
 			transition-duration: 0.4s;
@@ -562,7 +569,7 @@ a{
 				height: 190px;
 				min-height: 190px;
 
-				transition-property: height;
+				transition-property: height, min-height;
 				transition-duration: 0.5s;
 			}
 
@@ -717,7 +724,7 @@ hide, .hide{
 
 
 //縮去兩邊
-@media screen and (max-width:1000px ) {
+@media screen and (max-width: 768px ) {
 
 	.nav{
 		text-align: center;
@@ -726,6 +733,15 @@ hide, .hide{
 			margin-left:25px;
 		}
 
+		.nav-left{	
+			.nav-title{		
+				flex-grow: 1;
+				.nav-title-item{
+					padding-left: 0;
+					justify-content: center;
+				}
+			}
+		}
 	}
 
 	.container{
@@ -744,9 +760,18 @@ hide, .hide{
 
 	.RandomDiv{
 		.RandomList{
-			flex-direction: column;
+			flex-direction: row;
+			flex-wrap: wrap;
+			padding: 0 30px;
+
 			.RandomItem{
-				width:80vw;
+				min-width: 300px;
+
+				.title-container{
+					height: 110px;
+					min-height: 110px;
+				}
+
 			}
 		}
 	}
@@ -763,6 +788,8 @@ hide, .hide{
 			right: -$SideWidth-s;
 		}
 	}
+
+
 }
 
 

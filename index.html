@@ -34,12 +34,14 @@
 			<!--導航欄-->
 			<div class="nav">
 
-				<div class="nav-left" v-on:click="Topit()" v-bind:class="{'story-title-off': !ShowNavTitle}">
-					<div class="nav-title-item">
+				<div class="nav-left" v-on:click="Topit()">
+					<div>
 						<img src="pic/Icon_Blue.svg"/>
-						<p class="logo-title">Literary Dessert</p>
 					</div>
-					<p class="nav-title-item story-title" v-if="NowDiv == 0">{{AllStory[StoryInx].title}}</p>
+					<div class="nav-title"  v-bind:class="{'story-title-off': !ShowNavTitle}">
+						<p class="nav-title-item logo-title">Literary Dessert</p>
+						<p class="nav-title-item story-title" v-if="NowDiv == 0">{{AllStory[StoryInx].title}}</p>
+					</div>
 				</div>
 				<div class="nav-right">
 					<img src="pic/Menu.svg" v-on:click="SideToggle()"/>
@@ -112,18 +114,21 @@
 
 				<!--底部欄-->
 				<div class="bottomDiv">
-					<p class="halfOpacity">作者：孫宇</p>
 
-					<a href="https://www.facebook.com/LiteraryDessert/" title="Facebook" target="_blank">
-						<img src="pic/icon_fb.png"/>
-					</a>
+					<p class="tag">作者：孫宇</p>
+					<div>
 
-					<a href="https://pastewall.com/6028/wall/2" title="Paste Wall" target="_blank">
-						<img src="pic/icon_pw.png"/>
-					</a>
-					<a href="https://www.facebook.com/122589321556716/" title="DROOM" target="_blank">
-						<img src="pic/DROOM.svg"/>
-					</a>				
+						<a href="https://www.facebook.com/LiteraryDessert/" title="Facebook" target="_blank">
+							<img src="pic/icon_fb.png"/>
+						</a>
+
+						<a href="https://pastewall.com/6028/wall/2" title="Paste Wall" target="_blank">
+							<img src="pic/icon_pw.png"/>
+						</a>
+						<a href="https://www.facebook.com/122589321556716/" title="DROOM" target="_blank">
+							<img src="pic/DROOM.svg"/>
+						</a>	
+					</div>	
 				</div>
 
 			</div>

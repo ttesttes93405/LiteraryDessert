@@ -81,6 +81,7 @@ a {
     display: inline;
     cursor: pointer;
     padding: 10px;
+    margin: 10px;
     vertical-align: middle; }
   .nav p {
     color: #4c9ed9;
@@ -89,41 +90,46 @@ a {
     cursor: pointer; }
   .nav .nav-left {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     flex-grow: 1;
     align-items: center;
     justify-content: flex-start;
     text-align: left;
-    padding-left: 10px;
     height: 70px;
-    opacity: 0.9;
-    margin-top: -140px;
-    transition-property: margin-top;
-    transition-duration: 0.2s; }
-    .nav .nav-left.story-title-off {
-      margin-top: 0; }
-    .nav .nav-left .nav-title-item {
+    opacity: 0.9; }
+    .nav .nav-left .nav-title {
       display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      line-height: 70px;
-      height: 70px;
-      width: 100%;
-      max-width: 100%; }
-    .nav .nav-left .story-title {
-      font-size: 20px;
-      padding-left: 50px;
-      letter-spacing: 1px;
-      font-weight: 700; }
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: -70px;
+      transition-property: margin-top;
+      transition-duration: 0.2s; }
+      .nav .nav-left .nav-title.story-title-off {
+        margin-top: 70px; }
+      .nav .nav-left .nav-title .nav-title-item {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        line-height: 70px;
+        height: 70px;
+        min-height: 70px;
+        max-height: 70px;
+        width: 100%;
+        max-width: 100%;
+        padding-left: 20px; }
+      .nav .nav-left .nav-title .story-title {
+        font-size: 18px;
+        letter-spacing: 2px;
+        font-weight: 500; }
+      .nav .nav-left .nav-title .logo-title {
+        letter-spacing: 1px;
+        line-height: 70px;
+        height: 70px; }
   .nav .nav-right {
     flex-grow: 0;
     width: 70px;
     justify-content: center;
     opacity: 0.9; }
-  .nav .logo-title {
-    letter-spacing: 1px;
-    line-height: 70px;
-    height: 70px; }
 
 .container {
   display: inline-block;
@@ -138,7 +144,7 @@ a {
   align-items: center;
   vertical-align: middle;
   width: 100%;
-  height: 100px; }
+  height: 180px; }
   .read-bottom .read-bottom-left {
     flex-grow: 1;
     justify-content: flex-start;
@@ -399,11 +405,12 @@ a {
       width: 300px;
       height: 190px;
       cursor: pointer;
-      margin: 10px;
+      margin: 20px 10px;
       padding: 15px;
       box-sizing: border-box;
       border-radius: 15px;
       overflow: hidden;
+      box-shadow: 0 0 16px rgba(95, 97, 100, 0.25);
       transition-property: transform;
       transition-duration: 0.4s; }
       .RandomDiv .RandomList .RandomItem:hover {
@@ -418,7 +425,7 @@ a {
         align-items: center;
         height: 190px;
         min-height: 190px;
-        transition-property: height;
+        transition-property: height, min-height;
         transition-duration: 0.5s; }
       .RandomDiv .RandomList .RandomItem .title {
         color: #52606a;
@@ -527,11 +534,16 @@ a {
 hide, .hide {
   display: none; }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 768px) {
   .nav {
     text-align: center; }
     .nav .logo {
       margin-left: 25px; }
+    .nav .nav-left .nav-title {
+      flex-grow: 1; }
+      .nav .nav-left .nav-title .nav-title-item {
+        padding-left: 0;
+        justify-content: center; }
 
   .container {
     width: 100%; }
@@ -544,9 +556,14 @@ hide, .hide {
         font-size: 15px; }
 
   .RandomDiv .RandomList {
-    flex-direction: column; }
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0 30px; }
     .RandomDiv .RandomList .RandomItem {
-      width: 80vw; }
+      min-width: 300px; }
+      .RandomDiv .RandomList .RandomItem .title-container {
+        height: 110px;
+        min-height: 110px; }
 
   .sideBox {
     max-width: 300px;
