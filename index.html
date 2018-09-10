@@ -150,12 +150,10 @@
 				</div>
 
 				<div class="header">						
-					<img src="pic/Icon_Blue.svg" />	
-					<h1>Literary Dessert</h1>					
+					<img src="pic/Icon_Blue.svg" />		
 				</div>
 
 				<div class="sideBoxContent">
-
 
 					<!--搜尋-->
 					<div class="searchListDiv content-container">
@@ -176,16 +174,15 @@
 							</div>
 						</div>
 
-
-						<div v-for="item in SearchList" class="content-item" v-on:click="SideBox(false);">
-							<a v-bind:href="GetHash(item)">
-								<p>{{AllStory[item].title}}</p>
-							</a>
+						<div class="content-scroll">
+							<div v-for="item in SearchList" class="content-item" v-on:click="SideBox(false);">
+								<a v-bind:href="GetHash(item)">
+									<p>{{AllStory[item].title}}</p>
+								</a>
+							</div>
 						</div>
-
-						<div class="searchNone"  v-if="SearchList.length>=0">
-							<p class="halfOpacity">{{SearchList.length}} 個符合
-							</p>
+						<div class="tip-text"  v-if="SearchList.length>=0">
+							<p>{{SearchList.length}} 個符合</p>
 						</div>	
 
 					</div>
@@ -196,11 +193,16 @@
 							<img src="pic/Star.svg" />
 							<h1>收藏</h1>
 						</div>
-						<div v-for="item in BookMark.List" class="content-item">
-							<a v-bind:href="GetHash(item)" v-on:click="SideBox(false);">
-								<p>{{AllStory[item].title}}</p>
-							</a>
+						<div class="content-scroll">
+							<div v-for="item in BookMark.List" class="content-item">
+								<a v-bind:href="GetHash(item)" v-on:click="SideBox(false);">
+									<p>{{AllStory[item].title}}</p>
+								</a>
+							</div>
 						</div>
+						<div class="tip-text"  v-if="BookMark.List.length==0">
+							<p>還沒有收藏的故事</p>
+						</div>	
 					</div>
 
 				</div>

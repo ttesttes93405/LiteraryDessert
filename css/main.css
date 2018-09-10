@@ -247,6 +247,17 @@ a {
     display: flex;
     flex-direction: column;
     flex-grow: 1; }
+    .sideBox .sideBoxContent .content-container {
+      padding: 20px 0;
+      background-color: #F0F0F0;
+      border-radius: 25px;
+      box-sizing: border-box;
+      text-align: center;
+      margin: 10px 0;
+      overflow-y: auto; }
+    .sideBox .sideBoxContent .content-scroll {
+      max-height: 40vh;
+      overflow-y: auto; }
     .sideBox .sideBoxContent .content-title {
       display: flex;
       flex-direction: row;
@@ -287,11 +298,6 @@ a {
             background-color: rgba(76, 158, 217, 0.1); }
     .sideBox .sideBoxContent .content-item:last-child {
       border-style: none; }
-    .sideBox .sideBoxContent .content-container {
-      padding: 20px 0;
-      background-color: #F0F0F0;
-      border-radius: 25px;
-      box-sizing: border-box; }
     .sideBox .sideBoxContent .searchBar {
       display: flex;
       flex: 0;
@@ -345,18 +351,15 @@ a {
       flex-direction: column;
       align-items: center;
       width: 100%;
-      margin: 10px 0;
-      overflow-y: auto;
-      color: #52606a;
-      text-align: center; }
-      .sideBox .sideBoxContent .searchListDiv .searchNone {
-        font-size: 13px;
-        margin: 20px 0 0 0;
-        text-align: center; }
-    .sideBox .sideBoxContent .bookmarkDiv {
-      text-align: center;
-      margin: 10px 0;
-      overflow-y: auto; }
+      color: #52606a; }
+
+.tip-text {
+  font-size: 13px;
+  margin: 20px 0 0 0;
+  text-align: center; }
+  .tip-text p {
+    opacity: 0.5;
+    color: #52606a; }
 
 .bookmarkBtn {
   display: flex;
@@ -410,7 +413,6 @@ a {
       box-sizing: border-box;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 0 16px rgba(95, 97, 100, 0.25);
       transition-property: transform;
       transition-duration: 0.4s; }
       .RandomDiv .RandomList .RandomItem:hover {

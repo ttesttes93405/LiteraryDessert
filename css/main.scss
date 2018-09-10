@@ -240,7 +240,7 @@ a{
 	min-width: $SideWidth;
 	width: $SideWidth;
 
-	height:100vh;
+	height: 100vh;
 	overflow-y: auto;
 
 	display: flex;
@@ -301,6 +301,22 @@ a{
 		flex-grow: 1;
 
 
+		.content-container{
+
+			padding: 20px 0;
+			background-color: $LightColor;
+			//border: 1px solid rgba($BlackColor, 0.08);
+			border-radius: 25px;
+			box-sizing: border-box;
+			text-align: center;
+			margin: 10px 0;
+			overflow-y: auto;
+			
+		}
+		.content-scroll{
+			max-height: 40vh;
+			overflow-y: auto;
+		}
 		.content-title{
 
 			$ContentTitleHeight: 20px;
@@ -330,6 +346,7 @@ a{
 			border-bottom: 1px dashed $LineColor;
 			min-height: 50px;
 			width: 100%;
+			
 			text-align: left;
 
 			a{
@@ -360,14 +377,6 @@ a{
 		}
 		.content-item:last-child{
 			border-style: none;
-		}
-		.content-container{
-
-			padding: 20px 0;
-			background-color: $LightColor;
-			//border: 1px solid rgba($BlackColor, 0.08);
-			border-radius: 25px;
-			box-sizing: border-box;
 		}
 
 		.searchBar{
@@ -453,26 +462,26 @@ a{
 			flex-direction: column;
 			align-items: center;
 			width: 100%;
-			margin: 10px 0;
-			overflow-y: auto;
 
 			color:$DeepFontColor;
-			text-align: center;
 
-			.searchNone{
-				font-size: 13px;
-				margin:20px 0 0 0;
-				text-align: center;
-			}
+
 		}
 
 		.bookmarkDiv{
 
-			text-align: center;
-			margin: 10px 0;
-			overflow-y: auto;
 
 		}
+	}
+}
+
+.tip-text{
+	font-size: 13px;
+	margin:20px 0 0 0;
+	text-align: center;
+	p{
+		opacity: 0.5;	
+		color: $DeepFontColor;
 	}
 }
 
@@ -544,8 +553,8 @@ a{
 			box-sizing: border-box;
 			border-radius: 15px;
 			overflow: hidden;
-			
-			box-shadow: 0 0 16px rgba($BlackColor, 0.25);
+
+			//box-shadow: 0 0 16px rgba($BlackColor, 0.25);
 
 			transition-property: transform;
 			transition-duration: 0.4s;
