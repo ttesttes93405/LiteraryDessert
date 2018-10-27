@@ -95,8 +95,9 @@ var vm = new Vue({
 		isScrolling	: false,
 		SearchList	: [],
 		BookMark	: Utility.Dictionary.Create(),
-		SearchString:"",
-		RandomSroty	:[]
+		SearchString: "",
+		RandomSroty	: [],
+        CurrentHref : ""
 	},
 	computed:{
 		GetThisStory: function(){
@@ -112,13 +113,13 @@ var vm = new Vue({
 
 			this.GetData();	
 
+            /*
 			var Inx = this.ParseUrl();
 			if(Inx >= 0) { 
 				this.StoryInx = Inx; 
 				this.NowDiv = 0;
-			}
+			}*/
 
-			window.addEventListener("scroll",this.handleScroll);
 			window.addEventListener("hashchange", this.HashCheck);
 
 			this.FreshRandomStory();
@@ -132,6 +133,10 @@ var vm = new Vue({
 
 			//書籤紀錄
 			this.BookMark.CleanEmpty();
+            
+            this.HashCheck();
+            
+            new ClipboardJS("#CopyBtn");
 
 
 		},
@@ -157,14 +162,10 @@ var vm = new Vue({
 			this.SearchList = list;
 		},
 
-		//綁定scroll事件
-		handleScroll: function(e){
-			this.ShowNavTitle = (e.pageY > 220);
-		},
-
 		//綁定hashchange事件
 		HashCheck: function(){
-			this.ChangeInx(this.ParseUrl());	
+			this.ChangeInx(this.ParseUrl());
+            this.CurrentHref = document.location.href;
 		},
 
 		//取得Index對應的hash
@@ -181,12 +182,24 @@ var vm = new Vue({
 		//刷新隨機故事
 		FreshRandomStory: function(){
 			this.RandomSroty = [];
-			for(var i=0;i<3;i++){
+            var RandomStoryCount = 3;
+            
+            while(this.RandomSroty.length < RandomStoryCount){
+                
+                if (this.AllStory.length < RandomStoryCount) break;
+                
+                var st = Utility.Random.Range(0, this.AllStory.length)
+                if (this.AllStory[st].title != "" && this.RandomSroty.indexOf(st) == -1){
+					this.RandomSroty.push(st);
+				}
+            }
+            /*
+			for(var i=0; i<3; i++){
 				var st = Utility.Random.Range(0, this.AllStory.length);
 				if (this.AllStory[st].title != ""){
 					this.RandomSroty.push(st);
 				}
-			}
+			}*/
 		},
 
 		//改變故事Index
@@ -281,8 +294,11 @@ var vm = new Vue({
 					vm.isScrolling = false;
 				});
 			}
-		}
-
+		},
+        
+        CopyToClipboard: function(){
+            
+        }
 	}
 });
 

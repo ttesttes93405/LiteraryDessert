@@ -12,788 +12,874 @@ $LineColor:  rgba($BlackColor, 0.1);
 
 
 $NavHeight: 70px;
+$NavHeight-padding: 10px;
+
 $SideWidth: 400px;
 $SideWidth-s: 300px;
 
 body {
-	-moz-user-select : none;
-	-webkit-user-select: none;
-	user-select: none;
+    -moz-user-select : none;
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 #app{
-	text-align: center;
-	outline: none;
-	width: 100%;
-	margin-left: -$SideWidth/2;
+    text-align: center;
+    outline: none;
+    width: 100%;
+    margin-left: -$SideWidth/2;
 
-	transition-property: margin-left;
-	transition-duration: 0.4s;
+    transition-property: margin-left;
+    transition-duration: 0.4s;
 
-	&.sideBox-off{
-		margin-left: 0;
-	}
+    &.sideBox-off{
+        margin-left: 0;
+    }
 }
 
 a{
-	text-decoration-line: none !important;
-	text-decoration: none !important;
+    text-decoration-line: none !important;
+    text-decoration: none !important;
 }
 
 .nav{
-	display: inline-flex;
-	flex-direction: row;
-	justify-content:center;
-	align-items: center;
-	vertical-align: middle;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    vertical-align: middle;
 
-	position: fixed;
-	left: 0;
-	top: 0;
-	width: 100%;
-	height: $NavHeight;
-	background-color: rgba($LightColor,0.95); 
-	//box-shadow: 0 0 30px $WhiteColor ;
-	box-sizing: border-box;
-	padding:0 0px;
-	z-index: 50;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: $NavHeight;
+    background-color: rgba($LightColor,0.95); 
+    //box-shadow: 0 0 30px $WhiteColor ;
+    box-sizing: border-box;
+    padding:0 0px;
+    z-index: 50;
 
-	overflow: hidden;
+    overflow: hidden;
 
-	img{
-		width: 30px;
-		height: auto;
-		display: inline;
-		cursor: pointer;
-		padding: 10px;
-		margin: 10px;
-		vertical-align: middle;
-	}
-	p{
-		color: $MainColor;
-		line-height: 50px;
-		display: inline;
-		cursor: pointer;
-	}
+    img{
+        width: 30px;
+        height: auto;
+        display: inline;
+        cursor: pointer;
+        padding: 10px;
+        margin: 10px;
+        vertical-align: middle;
+    }
+    p{
+        color: $MainColor;
+        line-height: 50px;
+        display: inline;
+        cursor: pointer;
+    }
 
-	.nav-left{
-		display: flex;
-		flex-direction: row;
-		flex-grow: 1;
-		align-items: center;
-		justify-content: flex-start;
-		text-align: left;
-		height: $NavHeight;
+    .nav-left{
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        align-items: center;
+        justify-content: flex-start;
+        text-align: left;
+        height: $NavHeight - $NavHeight-padding * 2;
 
-		opacity: 0.9;
+        opacity: 0.9;
 
 
 
-		.nav-title{
+        .nav-title{
 
-			display: flex;
-			flex-direction: column;
-			align-items: flex-start;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
 
-			margin-top: -70px;
-			transition-property: margin-top;
-			transition-duration: 0.2s;
+            transition-property: margin-top;
+            transition-duration: 0.2s;
 
-			&.story-title-off{
-				margin-top: 70px;
-			}
+            .nav-title-item{
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                line-height: ($NavHeight - $NavHeight-padding * 2) / 2;
+                height: ($NavHeight - $NavHeight-padding * 2) / 2;
+                min-height: ($NavHeight - $NavHeight-padding * 2) / 2;
+                max-height: ($NavHeight - $NavHeight-padding * 2) / 2;
+                width: 100%;
+                max-width: 100%;
+                padding-left: 10px;
+            }
+            .story-title{
+                font-size: 13px;
+                letter-spacing: 2px;
+                font-weight: 500;
+                opacity: 0.6;
+                align-items: flex-start;
+                overflow: hidden;
+                img{
+                    $Img-padding: 5px;
 
-			.nav-title-item{
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
-				line-height: $NavHeight;
-				height: $NavHeight;
-				min-height:  $NavHeight;
-				max-height:  $NavHeight;
-				width: 100%;
-				max-width: 100%;
-				padding-left: 20px;
-			}
-			.story-title{
-				font-size: 18px;
-				letter-spacing: 2px;
-				font-weight: 500;
-			}
-			.logo-title{
-				letter-spacing: 1px;
-				line-height:  $NavHeight;
-				height: $NavHeight;
-			}
+                    width: ($NavHeight - $NavHeight-padding * 2) / 2 - $Img-padding * 2;
+                    height: ($NavHeight - $NavHeight-padding * 2) / 2 - $Img-padding * 2;
+                    padding: $Img-padding;
+                    margin: 0;
+                    margin-top: -3px;
+                }
+            }
+            .logo-title{
+                letter-spacing: 1px;
+                line-height: ($NavHeight - $NavHeight-padding * 2) / 2 ;
+                height: ($NavHeight - $NavHeight-padding * 2) / 2;
+            }
 
-		}
-	}
-	.nav-right{
-		flex-grow: 0;
-		width: $NavHeight;
-		justify-content: center;
-		opacity: 0.9;
-	}
+        }
+    }
+    .nav-right{
+        flex-grow: 0;
+        width: $NavHeight;
+        justify-content: center;
+        opacity: 0.9;
+    }
 
 
 
 }
 
 .container{
-	display: inline-block;
-	width: 700px;
-	padding: 70px 0;
+    display: inline-block;
+    width: 700px;
+    padding: 70px 0;
 }
 
 .read-bottom{
 
-	display: inline-flex;
-	flex-direction: row;
-	align-content: center;
-	justify-content: center;
-	align-items: center;
-	vertical-align: middle;
-	width: 100%;
-	height: 180px;
+    display: inline-flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    width: 100%;
+    height: 180px;
 
-	.read-bottom-left{
+    .read-bottom-left{
 
-		flex-grow: 1;
-		justify-content: flex-start;
-		text-align: left;
-	}
-	.read-bottom-right{
-		flex-grow: 0;
-		justify-content: center;
-	}
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        justify-content: flex-start;
+        text-align: left;
+    }
+    .read-bottom-right{
+        flex-grow: 0;
+        justify-content: center;
+    }
 
 }
 
 .bigBLACK{
 
-	position: fixed;
-	left:-50%;
-	top:-50%;
-	width:200%;
-	height: 200%;
-	cursor: pointer;
-	background-color: $BlackColor;
-	opacity: 0.5;
-	z-index: 55;
+    position: fixed;
+    left:-50%;
+    top:-50%;
+    width:200%;
+    height: 200%;
+    cursor: pointer;
+    background-color: $BlackColor;
+    opacity: 0.5;
+    z-index: 55;
 
-	transition-property: opacity;
-	transition-duration: 1s;
+    transition-property: opacity;
+    transition-duration: 1s;
 
-	&.bigBLACK-off{
-		opacity: 0;
-		display: none;
-	}
+    &.bigBLACK-off{
+        opacity: 0;
+        display: none;
+    }
 }
-
 
 //---------------------------------------
 
+
+.container.isBlack{
+}
+
 .read{
-	padding:0 50px;
-	box-sizing: border-box;
-	text-align: left;
-	.title{
-		text-align: center;
-	}
-	h1{
-		color: $BlackColor;
-		font-size: 40px;
-		margin:50px 0;
-		line-height: 60px;
-		letter-spacing: 3px;
-	}
-	.word{
-		display: inline-block;
-		width:100%;
-		min-height: 45px;
-		line-height: 45px;
-		color: $BlackColor;
-		font-size: 16px;
-		border-bottom:1px solid $LineColor;
-	}
+    padding:0 50px;
+    box-sizing: border-box;
+    text-align: left;
+
+
+    .title{
+        text-align: center;
+    }
+
+    h1{
+        color: $BlackColor;
+        font-size: 40px;
+        margin:50px 0;
+        line-height: 60px;
+        letter-spacing: 3px;
+    }
+    .word{
+        display: inline-block;
+        width:100%;
+        min-height: 45px;
+        line-height: 45px;
+        color: $BlackColor;
+        font-size: 16px;
+        border-bottom:1px solid $LineColor;
+    }
 }
 
 .welcome{
-	p{
-		margin:20px 0;
-		color: $DeepFontColor;
-		opacity:0.8;
-	}
-	h1{
-		font-size: 32px;
-		font-weight: 900;
-		color: $DeepFontColor;
-		opacity:0.8;
-	}
+    p{
+        margin:20px 0;
+        color: $DeepFontColor;
+        opacity:0.8;
+    }
+    h1{
+        font-size: 32px;
+        font-weight: 900;
+        color: $DeepFontColor;
+        opacity:0.8;
+    }
 }
 
 .sideBox{
 
-	position:fixed;
+    position:fixed;
 
-	max-width: $SideWidth;
-	min-width: $SideWidth;
-	width: $SideWidth;
+    max-width: $SideWidth;
+    min-width: $SideWidth;
+    width: $SideWidth;
 
-	height: 100vh;
-	overflow-y: auto;
+    height: 100vh;
+    overflow-y: auto;
 
-	display: flex;
-	flex-grow: 0.8;
-	flex-basis: 0%;
+    display: flex;
+    flex-grow: 0.8;
+    flex-basis: 0%;
 
-	right: 0;
-	flex-direction: column;
-	top:0;
-	//padding-top: 10px;
-	background-color: $WhiteColor;
-	box-sizing: border-box;
-	z-index: 60;
+    right: 0;
+    flex-direction: column;
+    top:0;
+    //padding-top: 10px;
+    background-color: $WhiteColor;
+    box-sizing: border-box;
+    z-index: 60;
 
-	transition-property: right;
-	transition-duration: 0.5s;
+    transition-property: right;
+    transition-duration: 0.5s;
 
-	&.sideBox-off{
-		right: -$SideWidth;
-	}
+    &.sideBox-off{
+        right: -$SideWidth;
+    }
 
-	.header{
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		flex-direction: row;
-		min-height: $NavHeight;
-		height: $NavHeight;
-		background-color: rgba($MainColor,0.15);	
+    .header{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        min-height: $NavHeight;
+        height: $NavHeight;
+        background-color: rgba($MainColor,0.15);	
 
-		img{
-			width: 30px;
-			height: 30px;
-		}
-		h1{
-			display: inline-block;
-			color: $MainColor;
-			font-size: 14px;
-			font-weight: 400;
-			padding: 10px;
-			letter-spacing: 1px;
-		}
-	}
+        img{
+            width: 30px;
+            height: 30px;
+        }
+        h1{
+            display: inline-block;
+            color: $MainColor;
+            font-size: 14px;
+            font-weight: 400;
+            padding: 10px;
+            letter-spacing: 1px;
+        }
+    }
 
-	.sideBoxContent{
+    .sideBoxContent{
 
-		position: relative;
+        position: relative;
 
-		border-left: 1px solid $LineColor;
-		border-bottom: 1px solid $LineColor;
-		padding-top: 20px;
-		padding: 10px;
+        border-left: 1px solid $LineColor;
+        border-bottom: 1px solid $LineColor;
+        padding-top: 20px;
+        padding: 10px;
 
-		display: flex;
-		flex-direction: column;
-		flex-grow: 1;
-
-
-		.content-container{
-
-			padding: 20px 0;
-			background-color: $LightColor;
-			border-radius: 25px;
-			box-sizing: border-box;
-			text-align: center;
-			margin: 10px 0;
-			overflow-y: auto;
-			
-		}
-		.content-scroll{
-			max-height: 40vh;
-			overflow-y: auto;
-		}
-		.content-title{
-
-			$ContentTitleHeight: 20px;
-
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			margin-bottom: 15px;
-			opacity: 0.9;
-
-			img{
-				width: $ContentTitleHeight;
-				height: $ContentTitleHeight;
-			}
-			h1{
-				margin: 0 10px;
-				display: inline-block;
-				font-size: 15px;
-				line-height: $ContentTitleHeight;
-				color: $MainColor;
-				font-weight: 500;
-
-			}
-		}
-		.content-item{
-			display:inline-block;
-			border-bottom: 1px dashed $LineColor;
-			min-height: 50px;
-			width: 100%;
-			
-			text-align: left;
-
-			a{
-				text-decoration-line: none;
-				color: $DeepFontColor;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
 
 
-				p{
-					width:100%;
-					padding: 0 30px;
-					height:100%;
-					line-height: 50px;
-					box-sizing: border-box;
-					font-size: 15px;
-					background-color: rgba($MainColor,0);
+        .content-container{
 
-					transition-property: color, background-color;
-					transition-duration: 0.4s, 0.4s;
+            padding: 20px 0;
+            background-color: $LightColor;
+            border-radius: 25px;
+            box-sizing: border-box;
+            text-align: center;
+            margin: 10px 0;
+            overflow-y: auto;
 
+        }
+        .content-scroll{
+            width: 100%;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+        .content-title{
 
+            $ContentTitleHeight: 20px;
 
-					&:hover{
-						color: $MainColor;
-						background-color: rgba($MainColor,0.1);
-					}
-				}
-			}
-		}
-		.content-item:last-child{
-			border-style: none;
-		}
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-bottom: 15px;
+            opacity: 0.9;
 
-		.searchBar{
-			display: flex;
-			flex: 0;
-			flex-direction: row;
+            img{
+                width: $ContentTitleHeight;
+                height: $ContentTitleHeight;
+            }
+            h1{
+                margin: 0 10px;
+                display: inline-block;
+                font-size: 15px;
+                line-height: $ContentTitleHeight;
+                color: $MainColor;
+                font-weight: 500;
 
-			justify-content: center;
-			align-items: center;
-			vertical-align: middle;
+            }
+        }
+        .content-item{
+            display:inline-block;
+            border-bottom: 1px dashed $LineColor;
+            min-height: 50px;
+            width: 100%;
 
-			border-radius: 20px;
-			border: 1px solid rgba($MainColor,0.3);
-			background-color: rgba($MainColor,0.05);
+            text-align: left;
 
-			margin-bottom: 20px;
-
-			min-height: 40px;
-			height: 40px;
-			max-height: 40px;
-
-			//border-bottom: 1px solid $LineColor;
-			box-sizing:border-box;
-
-			.left-block{
-				display: flex;
-				flex: 1;
-				//padding-right: 10px;
-				box-sizing: border-box;
-			}
-			.right-block{
-				display: flex;
-				padding-right: 5px;
-				width: 40px;
-			}
-			.searchTxt{
-
-				font-size: 16px;
-				height:40px;
-				//margin:0 20px;
-				//max-width: 300px;
-
-				box-sizing: border-box;
-
-				color:$MainColor;
-				background-color: inherit;
-				border-style:none;
-				padding:5px 0 5px 20px;
-				text-align: left;
-				font-weight: 800;
-
-				transition-duration: 0.4s;
-				//transition-property: box-shadow;
-
-				&:focus{
-					//box-shadow: 0 0 5px rgba($MainColor,0.8);
-				}
-			}
-			.searchBtn{
-
-				display: inline-block;
-				width: 40px;
-				height: 40px;
-				background-color: inherit;			
-				border-style: none;						
-				cursor: pointer;
-				padding: 5px;
-				box-sizing: border-box;
-
-				img{
-					width: 30px;
-					height: 30px;
-					padding: 0;
-				}
-			}
-		}
-
-		.searchListDiv{
+            a{
+                text-decoration-line: none;
+                color: $DeepFontColor;
 
 
-			float: none;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			width: 100%;
+                p{
+                    width:100%;
+                    padding: 0 30px;
+                    height:100%;
+                    line-height: 50px;
+                    box-sizing: border-box;
+                    font-size: 15px;
+                    background-color: rgba($MainColor,0);
 
-			color:$DeepFontColor;
+                    transition-property: color, background-color;
+                    transition-duration: 0.4s, 0.4s;
 
 
-		}
 
-		.bookmarkDiv{
+                    &:hover{
+                        color: $MainColor;
+                        background-color: rgba($MainColor,0.1);
+                    }
+                }
+            }
+        }
+        .content-item:last-child{
+            border-style: none;
+        }
+
+        .searchBar{
+            display: flex;
+            flex: 0;
+            flex-direction: row;
+
+            justify-content: center;
+            align-items: center;
+            vertical-align: middle;
+
+            border-radius: 20px;
+            border: 1px solid rgba($MainColor,0.3);
+            background-color: rgba($MainColor,0.05);
+
+            margin-bottom: 20px;
+
+            min-height: 40px;
+            height: 40px;
+            max-height: 40px;
+
+            //border-bottom: 1px solid $LineColor;
+            box-sizing:border-box;
+
+            .left-block{
+                display: flex;
+                flex: 1;
+                //padding-right: 10px;
+                box-sizing: border-box;
+            }
+            .right-block{
+                display: flex;
+                padding-right: 5px;
+                width: 40px;
+            }
+            .searchTxt{
+
+                font-size: 16px;
+                height:40px;
+                //margin:0 20px;
+                //max-width: 300px;
+
+                box-sizing: border-box;
+
+                color:$MainColor;
+                background-color: inherit;
+                border-style:none;
+                padding:5px 0 5px 20px;
+                text-align: left;
+                font-weight: 800;
+
+                transition-duration: 0.4s;
+                //transition-property: box-shadow;
+
+                &:focus{
+                    //box-shadow: 0 0 5px rgba($MainColor,0.8);
+                }
+            }
+            .searchBtn{
+
+                display: inline-block;
+                width: 40px;
+                height: 40px;
+                background-color: inherit;			
+                border-style: none;						
+                cursor: pointer;
+                padding: 5px;
+                box-sizing: border-box;
+
+                img{
+                    width: 30px;
+                    height: 30px;
+                    padding: 0;
+                }
+            }
+        }
+
+        .searchListDiv{
 
 
-		}
-	}
+            float: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+
+            color:$DeepFontColor;
+
+
+        }
+
+        .bookmarkDiv{
+
+
+        }
+    }
 }
 
 .tip-text{
-	font-size: 13px;
-	margin:20px 0 0 0;
-	text-align: center;
-	p{
-		opacity: 0.5;	
-		color: $DeepFontColor;
-	}
+    font-size: 13px;
+    margin:20px 0 0 0;
+    text-align: center;
+    p{
+        opacity: 0.5;	
+        color: $DeepFontColor;
+    }
 }
 
 .bookmarkBtn{
 
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 
-	height: 40px;
-	cursor: pointer;
-	border-radius: 25px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 25px;
 
-	background-color: rgba($MainColor, 0.2);
+    background-color: rgba($MainColor, 0.2);
 
 
-	transition-property: transform, background-color;
-	transition-duration: 0.4s, 1s;
+    transition-property: transform, background-color;
+    transition-duration: 0.4s, 1s;
 
-	&:hover{
-		transform: scale(1.1);
-	}
+    &:hover{
+        transform: scale(1.1);
+    }
 
-	img{
-		padding:13px;
-		height:24px;
-		width:24px;		
-	}
-	p{
-		display: inline-block;
-		height:40px;
-		line-height:40px;
-		color: $MainColor;
-		padding-right: 20px;
-	}
+    img{
+        padding:13px;
+        height:24px;
+        width:24px;		
+    }
+    p{
+        display: inline-block;
+        height:40px;
+        line-height:40px;
+        color: $MainColor;
+        padding-right: 20px;
+    }
 }
 .bookmarkBtn-off{	
-	background-color: rgba($BlackColor, 0.1);
-	p{
-		color: $DeepFontColor;
-	}
+    background-color: rgba($BlackColor, 0.1);
+    p{
+        color: $DeepFontColor;
+    }
 }
 
 .RandomDiv{
-	margin: 80px 0;
-	.div-title{
-		color: $DeepFontColor;
-		font-size: 20px;
-		opacity: 0.3;
-		margin: 20px;
-	}
+    margin: 80px 0;
+    .div-title{
+        color: $DeepFontColor;
+        font-size: 20px;
+        opacity: 0.3;
+        margin: 20px;
+    }
 
-	.RandomList{
-		display: flex;
-		flex-direction: row;
-		justify-content: center;
-		align-items: center;
+    .RandomList{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
 
-		.RandomItem{
+        .RandomItem{
 
-			background-color: $LightColor;	
-			display: inline-block;
-			width: 300px;
-			height: 190px;
-			cursor: pointer;
-			margin: 20px 10px;
-			padding: 15px;
-			box-sizing: border-box;
-			border-radius: 15px;
-			overflow: hidden;
+            background-color: $LightColor;	
+            display: inline-block;
+            width: 300px;
+            height: 190px;
+            cursor: pointer;
+            margin: 20px 10px;
+            padding: 15px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            overflow: hidden;
 
-			//box-shadow: 0 0 16px rgba($BlackColor, 0.25);
+            //box-shadow: 0 0 16px rgba($BlackColor, 0.25);
 
-			transition-property: transform;
-			transition-duration: 0.4s;
+            transition-property: transform;
+            transition-duration: 0.4s;
 
 
-			&:hover{
+            &:hover{
 
-				transform: scale(1.03);
+                transform: scale(1.03);
 
-				.title-container{
-					height: 100px;
-					min-height: 100px;
-				}
-			}
+                .title-container{
+                    height: 100px;
+                    min-height: 100px;
+                }
+            }
 
-			.title-container{
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				height: 190px;
-				min-height: 190px;
+            .title-container{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 190px;
+                min-height: 190px;
 
-				transition-property: height, min-height;
-				transition-duration: 0.5s;
-			}
+                transition-property: height, min-height;
+                transition-duration: 0.5s;
+            }
 
-			.title{
-				color: $DeepFontColor;
-				font-size: 20px;
-				margin-bottom: 15px;
-				word-wrap: break-word;
-			}
-			.content{
-				color: $DeepFontColor;
-				font-size: 15px;
-				text-align: left;
-				line-height: 20px;
-				height: 80px;
-				margin-top: 10px;
-				letter-spacing: 1px;
-				opacity: 0.2;
-			}
-			.tag{
-				opacity: 0.5;
-			}
-			a{
-				display: inline-block;
-				width: 100%;
-				height: 100%;
-			}
-			.gradient {
-				position: relative;
-				top: -40px;
-				height: 40px;
-				width: 100%;
+            .title{
+                color: $DeepFontColor;
+                font-size: 20px;
+                margin-bottom: 15px;
+                word-wrap: break-word;
+            }
+            .content{
+                color: $DeepFontColor;
+                font-size: 15px;
+                text-align: left;
+                line-height: 20px;
+                height: 80px;
+                margin-top: 10px;
+                letter-spacing: 1px;
+                opacity: 0.2;
+            }
+            .tag{
+                opacity: 0.5;
+            }
+            a{
+                display: inline-block;
+                width: 100%;
+                height: 100%;
+            }
+            .gradient {
+                position: relative;
+                top: -40px;
+                height: 40px;
+                width: 100%;
 
-				$EndValue: 0.9;
-				background: -moz-linear-gradient(top, rgba($LightColor,0) 0%, rgba($LightColor,$EndValue) 100%); /* FF3.6-15 */
-				background: -webkit-linear-gradient(top, rgba($LightColor,0) 0%,rgba($LightColor,$EndValue) 100%); /* Chrome10-25,Safari5.1-6 */
-				background: linear-gradient(to bottom, rgba($LightColor,0) 0%,rgba($LightColor,$EndValue) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                $EndValue: 0.9;
+                background: -moz-linear-gradient(top, rgba($LightColor,0) 0%, rgba($LightColor,$EndValue) 100%); /* FF3.6-15 */
+                background: -webkit-linear-gradient(top, rgba($LightColor,0) 0%,rgba($LightColor,$EndValue) 100%); /* Chrome10-25,Safari5.1-6 */
+                background: linear-gradient(to bottom, rgba($LightColor,0) 0%,rgba($LightColor,$EndValue) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 
-			}
-		}
-	}
+            }
+        }
+    }
 }
 
 .bottomDiv{
-	border-top: 1px solid $LineColor;
-	img{
-		width:40px;
-		height:40px;
-		padding:10px;
-		border-radius: 10000px;
-		opacity:0.2;
+    border-top: 1px solid $LineColor;
+    img{
+        width:40px;
+        height:40px;
+        padding:10px;
+        border-radius: 10000px;
+        opacity:0.2;
 
-		transition-property: opacity, transform;
-		transition-duration: 0.4s;
+        transition-property: opacity, transform;
+        transition-duration: 0.4s;
 
-		&:hover{
-			transform: scale(1.1);
-			opacity:1;
-		}
+        &:hover{
+            transform: scale(1.1);
+            opacity:1;
+        }
 
-	}
-	p{
-		font-size: 13px;
-		margin:50px 0;
-	}
+    }
+    p{
+        font-size: 13px;
+        margin:50px 0;
+    }
 }
 
 .halfOpacity{
-	opacity: 0.3;
+    opacity: 0.3;
+}
+
+.clipboard{
+
+    $clipboard-border-radius: 9999px;
+
+    
+    flex-grow: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+    cursor: pointer;
+    opacity: 0.3;
+
+    transition-property: opacity;
+    transition-duration: 0.3s;
+
+    //暫時隱藏
+    display: none;
+    
+    &:hover{
+        opacity: 1;
+    }
+
+    &-container{
+        display: flex;
+        flex-direction: row;
+        flex-grow: 1;
+        padding: 0 10px;
+        max-width: 350px;
+    }
+
+    &-element{
+        padding: 5px 20px;
+        box-sizing: border-box;
+        line-height: 30px;
+        font-size: 14px;
+    }
+
+    &-input{
+        border-radius: $clipboard-border-radius 0 0 $clipboard-border-radius;
+        height: 40px;
+        border-style: none;
+        background-color: $LightColor;	
+        flex-grow: 1;
+        word-break: keep-all;
+        overflow: hidden;
+        color: rgba($BlackColor,0.3);
+
+        p{
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+    }
+    &-btn{
+        display: inline-block;
+        border-radius: 0 $clipboard-border-radius $clipboard-border-radius 0;
+        width: 100px;
+        height: 40px;
+        background-color: $LightColor;
+        color: $BlackColor;
+    }
+
+    input{
+        position: relative;
+        left: -100px;
+        top: -100px;
+        width: 10px;
+        opacity: 0;
+    }
+
 }
 
 //---------------------------------------
 
 .HeadO{	
 
-	$HeadSize:80px;
+    $HeadSize:80px;
 
-	display: inline-block;
-	height:$HeadSize;
-	width:$HeadSize;
-	text-align: center;
-	background-color: $MainColor;
-	margin: 30px;
+    display: inline-block;
+    height:$HeadSize;
+    width:$HeadSize;
+    text-align: center;
+    background-color: $MainColor;
+    margin: 30px;
 
-	p{
-		margin:0 !important;
-		line-height: $HeadSize;
-		color: white !important;
-		font-size: $HeadSize / 3.5;
-	}
-	img{
-		$Side:15px;
-		width:$HeadSize - $Side*2;
-		padding:$Side;
-	}
+    p{
+        margin:0 !important;
+        line-height: $HeadSize;
+        color: white !important;
+        font-size: $HeadSize / 3.5;
+    }
+    img{
+        $Side:15px;
+        width:$HeadSize - $Side*2;
+        padding:$Side;
+    }
 
-	&-s{
-		$HeadSize-s:40px;
-		width:$HeadSize-s;
-		height:$HeadSize-s;
-		margin:10px;
+    &-s{
+        $HeadSize-s:40px;
+        width:$HeadSize-s;
+        height:$HeadSize-s;
+        margin:10px;
 
-		img{
-			$Side:5px;
-			width:$HeadSize-s - $Side*2;
-			height:$HeadSize-s - $Side*2;
-			padding:$Side;
-		}
-	}
+        img{
+            $Side:5px;
+            width:$HeadSize-s - $Side*2;
+            height:$HeadSize-s - $Side*2;
+            padding:$Side;
+        }
+    }
 }
 
 .circle{
-	border-radius: 10000px;
+    border-radius: 10000px;
 }
 
 
-$TagColor: #666;
 .tag{
 
-	display: inline-block;
-	font-size: 13px;
-	letter-spacing: 1px;
-	padding: 0 20px;
-	height: 40px;
-	line-height: 40px;
+    $TagColor: #666;
 
-	color: $TagColor;
-	background-color: rgba($TagColor,0.1);
-	border-radius: 20px;
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding: 0 20px;
+    height: 40px;
+    line-height: 40px;
+
+    color: $TagColor;
+    background-color: rgba($TagColor,0.1);
+    border-radius: 20px;
 
 
 
 }
 
 .text{
-	&-right{ text-align: right;		}
-	&-center{ text-align: center;	}
-	&-left{ text-align: left;		}
+    &-right{ text-align: right;		}
+    &-center{ text-align: center;	}
+    &-left{ text-align: left;		}
 }
 
 .inline{
-	display: inline-block;
-	width:100%;
+    display: inline-block;
+    width:100%;
 }
+
 .pointer{
-	cursor: pointer;
+    cursor: pointer;
 }
 
 hide, .hide{
-	display:none;
+    display:none;
 }
 
 
 //縮去兩邊
 @media screen and (max-width: 768px ) {
 
-	.nav{
-		text-align: center;
+    .nav{
+        text-align: center;
 
-		.logo{
-			margin-left:25px;
-		}
+        .logo{
+            margin-left:25px;
+        }
 
-		.nav-left{	
-			.nav-title{		
-				flex-grow: 1;
-				.nav-title-item{
-					padding-left: 0;
-					justify-content: center;
-				}
-			}
-		}
-	}
+    }
 
-	.container{
-		width:100%;
-		.read{
-			padding:0 30px;
+    .container{
+        width:100%;
+        .read{
+            padding:0 30px;
 
-			.word{
-				min-height: 35px;
-				line-height: 35px;
-				border-style: none;
-				font-size: 15px;
-			}
-		}
-	}
+            .word{
+                min-height: 35px;
+                line-height: 35px;
+                border-style: none;
+                font-size: 15px;
+            }
+        }
+    }
 
-	.RandomDiv{
-		.RandomList{
-			flex-direction: row;
-			flex-wrap: wrap;
-			padding: 0 30px;
+    .RandomDiv{
+        .RandomList{
+            flex-direction: row;
+            flex-wrap: wrap;
+            padding: 0 30px;
 
-			.RandomItem{
-				min-width: 300px;
+            .RandomItem{
+                min-width: 300px;
 
-				.title-container{
-					height: 110px;
-					min-height: 110px;
-				}
+                .title-container{
+                    height: 110px;
+                    min-height: 110px;
+                }
 
-			}
-		}
-	}
+            }
+        }
+    }
 
 
-	.sideBox{
+    .sideBox{
 
-		max-width: $SideWidth-s;
-		min-width: $SideWidth-s;
-		width: $SideWidth-s;
-		right: 0;
+        max-width: $SideWidth-s;
+        min-width: $SideWidth-s;
+        width: $SideWidth-s;
+        right: 0;
 
-		&.sideBox-off{
-			right: -$SideWidth-s;
-		}
-	}
+        &.sideBox-off{
+            right: -$SideWidth-s;
+        }
+    }
 
 
 }
