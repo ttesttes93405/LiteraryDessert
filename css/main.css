@@ -97,6 +97,12 @@ a {
     text-align: left;
     height: 50px;
     opacity: 0.9; }
+    .nav .nav-left .nav-icon img {
+      box-sizing: border-box;
+      padding: 15px;
+      margin: 0;
+      height: 70px;
+      width: 70px; }
     .nav .nav-left .nav-title {
       display: flex;
       flex-direction: column;
@@ -198,15 +204,17 @@ a {
     font-size: 16px;
     border-bottom: 1px solid rgba(95, 97, 100, 0.1); }
 
-.welcome p {
-  margin: 20px 0;
-  color: #52606a;
-  opacity: 0.8; }
-.welcome h1 {
-  font-size: 32px;
-  font-weight: 900;
-  color: #52606a;
-  opacity: 0.8; }
+.welcome {
+  padding-top: 50px; }
+  .welcome p {
+    margin: 20px 0;
+    color: #52606a;
+    opacity: 0.8; }
+  .welcome h1 {
+    font-size: 32px;
+    font-weight: 900;
+    color: #52606a;
+    opacity: 0.8; }
 
 .sideBox {
   position: fixed;
@@ -546,7 +554,7 @@ a {
   width: 80px;
   text-align: center;
   background-color: #4c9ed9;
-  margin: 30px; }
+  margin: 20px; }
   .HeadO p {
     margin: 0 !important;
     line-height: 80px;

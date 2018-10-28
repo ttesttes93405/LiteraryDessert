@@ -89,7 +89,15 @@ a{
 
         opacity: 0.9;
 
-
+		.nav-icon{
+			img{
+				box-sizing: border-box;
+				padding: 15px;
+				margin: 0;
+				height: $NavHeight;
+				width: $NavHeight;
+			}
+		}
 
         .nav-title{
 
@@ -137,6 +145,7 @@ a{
 
         }
     }
+	
     .nav-right{
         flex-grow: 0;
         width: $NavHeight;
@@ -236,6 +245,7 @@ a{
 }
 
 .welcome{
+	padding-top: 50px;
     p{
         margin:20px 0;
         color: $DeepFontColor;
@@ -751,7 +761,7 @@ a{
     width:$HeadSize;
     text-align: center;
     background-color: $MainColor;
-    margin: 30px;
+    margin: 20px;
 
     p{
         margin:0 !important;

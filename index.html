@@ -13,7 +13,7 @@
         <meta property="og:description" content="每個故事，都是一口不同味道的點心，每一口，都是不一樣的滋味"/>
         <meta property="og:site_name" content="Literary Dessert 點心故事"/>
         <meta property="og:type" content="story"/>
-        <meta property="og:image" content="http://i.imgur.com/W7WNLxx.jpg"/>
+        <meta property="og:image" content="https://i.imgur.com/BSgt8sd.png"/>
 
         <!-- theme color -->
         <meta name="theme-color" content="#4C9ED9"/>
@@ -36,7 +36,7 @@
             <div class="nav">
 
                 <div class="nav-left" v-on:click="Topit()">
-                    <div>
+                    <div class="nav-icon">
                         <img src="pic/Icon_Blue.svg"/>
                     </div>
                     <div class="nav-title"  v-bind:class="{'story-title-off': !ShowNavTitle}">
@@ -92,8 +92,8 @@
 
                 <!--歡迎-->
                 <div class="welcome" v-if="NowDiv == 1">
-                    <div class="circle HeadO hide">
-                        <p>Hello</p>
+                    <div class="circle HeadO">
+                       <img src="pic/Icon_White.svg" />
                     </div>
                     <p>每個故事，都是不同口味的點心</p>
                     <h1>挑選一個故事</h1>
@@ -119,14 +119,6 @@
                         </div>
                     </div>
 
-                    <!--
-<div v-on:click="GetRandomStory()" class="RandomItem" title="抽一個故事">
-<div class="title-contain">
-<h1 class="title">？？？</h1>
-</div>
-<p class="tag">隨機</p>
-</div>
--->
 
                 </div>
 
