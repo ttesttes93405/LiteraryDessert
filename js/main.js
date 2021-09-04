@@ -269,6 +269,8 @@ var vm = new Vue({
 				success:
 				function(data) {			
 					vm.AllStory = data.story;
+					
+					document.querySelector("#loading").style.display = "none";
 				},
 				async:false
 			});
