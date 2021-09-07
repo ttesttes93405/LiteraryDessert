@@ -1,0 +1,22 @@
+{
+    "name": "Literary Dessert",
+    "short_name": "Literary Dessert",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#4c9ed9",
+    "description": "每個故事，都是一口不同味道的點心，每一口，都是不一樣的滋味",
+    "icons": [
+        {
+            "src": "./pic/Icon_48.png",
+            "sizes": "48x48"
+        },
+        {
+            "src": "./pic/Icon_128.png",
+            "sizes": "128x128"
+        },
+        {
+            "src": "./pic/Icon_256.png",
+            "sizes": "256x256"
+        }
+    ]
+}
